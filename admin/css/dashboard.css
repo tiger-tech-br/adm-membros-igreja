@@ -1,0 +1,313 @@
+/* =========================
+   CONTENT
+========================= */
+
+.content{
+
+    flex:1;
+    padding:18px 22px;
+
+}
+
+/* =========================
+   TOPBAR
+========================= */
+
+.topbar{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:18px;
+
+}
+
+.topbar h1{
+
+    font-size:1.6rem;
+    margin-bottom:3px;
+
+}
+
+.topbar p{
+
+    font-size:14px;
+    color:var(--gray);
+
+}
+
+.usuario img{
+
+    width:50px;
+
+    height:50px;
+
+    object-fit:cover;
+
+    border-radius:50%;
+
+    border:2px solid var(--gold);
+
+}
+
+.usuario h4{
+
+    font-size:15px;
+
+}
+
+.usuario span{
+
+    font-size:13px;
+
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.cards{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:14px;
+
+    margin-bottom:18px;
+
+}
+
+.card{
+
+    background:var(--bg2);
+
+    border-radius:14px;
+
+    padding:16px;
+
+    text-align:center;
+
+}
+
+.card i{
+
+    font-size:28px;
+
+    margin-bottom:8px;
+
+    color:var(--gold);
+
+}
+
+.card h2{
+
+    font-size:26px;
+
+    margin-bottom:4px;
+
+}
+
+.card span{
+
+    font-size:14px;
+
+}
+
+/* =========================
+   BOTÃO SCANNER
+========================= */
+
+.scanner-area{
+
+    margin-bottom:18px;
+
+}
+
+.btn-scanner{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:16px;
+
+    font-size:17px;
+
+    letter-spacing: .5px;
+
+    border-radius:12px;
+
+    background:var(--gold);
+
+    color:#111;
+
+    text-decoration:none;
+
+    font-weight:700;
+
+}
+
+/* =========================
+   TABELA
+========================= */
+
+.ultimos{
+
+    padding:18px;
+
+    border-radius:16px;
+
+}
+
+.ultimos h2{
+
+    font-size:20px;
+
+    margin-bottom:15px;
+
+}
+
+thead th{
+
+    padding:10px;
+
+    font-size:14px;
+
+}
+
+tbody td{
+
+    padding:10px;
+
+    font-size:14px;
+
+}
+
+.foto-membro{
+
+    width:42px;
+
+    height:42px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+}
+
+
+/* =========================
+   BOTÃO EDITAR DA TABELA
+========================= */
+
+.btn-table{
+
+    background:var(--gold);
+
+    color:#111;
+
+    border:none;
+
+    border-radius:8px;
+
+    padding:8px 16px;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    font-family:"Poppins",sans-serif;
+
+    cursor:pointer;
+
+    transition:var(--transition);
+
+}
+
+.btn-table:hover{
+
+    background:var(--gold-hover);
+
+    transform:translateY(-2px);
+
+}
+
+/* =========================
+   BOTÃO SINO
+========================= */
+
+.icon-btn{
+
+    width:42px;
+
+    height:42px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:var(--bg2);
+
+    color:var(--gold);
+
+    border:1px solid rgba(212,175,55,.25);
+
+    border-radius:50%;
+
+    cursor:pointer;
+
+    transition:var(--transition);
+
+    box-shadow:0 4px 12px rgba(0,0,0,.25);
+
+}
+
+.icon-btn:hover{
+
+    background:var(--gold);
+
+    color:#111;
+
+    transform:translateY(-2px);
+
+    box-shadow:0 6px 18px rgba(212,175,55,.35);
+
+}
+
+.icon-btn i{
+
+    font-size:18px;
+
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media(max-width:1000px){
+
+    .cards{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+}
+
+@media(max-width:700px){
+
+    .cards{
+
+        grid-template-columns:1fr;
+
+    }
+
+}

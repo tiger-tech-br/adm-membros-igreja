@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Escanear QR Code</title>
+
+    <link rel="stylesheet"
+          href="/admin/css/global.css">
+
+    <link rel="stylesheet" href="/admin/css/menu.css">
+
+    <link rel="stylesheet"
+          href="/admin/css/scanner.css">
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="scanner-container">
+
+    <div class="scanner-card">
+
+        <img
+            src="/images/assembleia-logo.png"
+            alt="Logo"
+            class="logo">
+
+        <h1>
+
+            Escanear QR Code
+
+        </h1>
+
+        <p>
+
+            Aponte a câmera para o QR Code do membro.
+
+        </p>
+
+        <div id="reader"></div>
+
+        <button
+            id="btnCancelar"
+            onclick="window.location.href='/dashboard'">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            Voltar
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- Biblioteca -->
+
+<script src="https://unpkg.com/html5-qrcode"></script>
+<script src="/admin/js/menu.js"></script>
+<script src="/admin/js/scanner.js"></script>
+
+</body>
+
+</html>

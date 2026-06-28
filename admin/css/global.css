@@ -1,0 +1,327 @@
+/* =========================
+   GOOGLE FONT
+========================= */
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap");
+
+/* =========================
+   RESET
+========================= */
+
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+
+}
+
+/* =========================
+   VARIÁVEIS
+========================= */
+
+:root{
+
+    --bg:#0b0b0b;
+
+    --bg2:#181818;
+
+    --gold:#d4af37;
+
+    --gold-hover:#f2d46b;
+
+    --white:#ffffff;
+
+    --gray:#bfbfbf;
+
+    --transition:.35s;
+
+    --shadow:0 15px 35px rgba(0,0,0,.35);
+
+}
+
+/* =========================
+   BODY
+========================= */
+
+body{
+
+    font-family:"Poppins",sans-serif;
+
+    background:var(--bg);
+
+    color:var(--white);
+
+}
+
+/* =========================
+   LAYOUT PRINCIPAL
+========================= */
+
+.dashboard{
+
+    display:flex;
+
+    min-height:100vh;
+
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar{
+
+    width:270px;
+
+    background:#141414;
+
+    padding:30px 20px;
+
+    border-right:1px solid rgba(255,255,255,.08);
+
+}
+
+.logo{
+
+    text-align:center;
+
+    margin-bottom:50px;
+
+}
+
+.logo img{
+
+    width:150px;
+
+}
+
+/* =========================
+   MENU
+========================= */
+
+.menu{
+
+    list-style:none;
+
+}
+
+.menu li{
+
+    margin-bottom:12px;
+
+}
+
+.menu li a{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:15px 20px;
+
+    color:var(--white);
+
+    text-decoration:none;
+
+    border-radius:12px;
+
+    transition:var(--transition);
+
+}
+
+.menu li a i{
+
+    width:22px;
+
+    font-size:1.1rem;
+
+    color:var(--gold);
+
+}
+
+.menu li:hover a{
+
+    background:#1f1f1f;
+
+}
+
+.menu li.active a{
+
+    background:var(--gold);
+
+    color:#111;
+
+    font-weight:600;
+
+}
+
+.menu li.active i{
+
+    color:#111;
+
+}
+
+/* =========================
+   CONTENT
+========================= */
+
+.content{
+
+    flex:1;
+
+    padding:40px;
+
+}
+
+/* =========================
+   TOPBAR
+========================= */
+
+.topbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:40px;
+
+}
+
+.topbar h1{
+
+    font-size:2.3rem;
+
+    margin-bottom:10px;
+
+}
+
+.topbar p{
+
+    color:var(--gray);
+
+}
+
+.topbar-right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:25px;
+
+}
+
+/* =========================
+   BOTÃO VOLTAR
+========================= */
+
+.btn-voltar{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:12px 22px;
+
+    background:var(--gold);
+
+    color:#111;
+
+    text-decoration:none;
+
+    border-radius:12px;
+
+    font-weight:600;
+
+    transition:var(--transition);
+
+}
+
+.btn-voltar:hover{
+
+    background:var(--gold-hover);
+
+    transform:translateY(-2px);
+
+}
+
+/* =========================
+   STATUS
+========================= */
+
+.status{
+
+    display:inline-block;
+
+    padding:6px 14px;
+
+    border-radius:30px;
+
+    font-size:.9rem;
+
+    font-weight:600;
+
+}
+
+.ativo{
+
+    background:#1d4f2b;
+
+    color:#6bff90;
+
+}
+
+.inativo{
+
+    background:#5a1d1d;
+
+    color:#ff8a8a;
+
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media(max-width:768px){
+
+    .dashboard{
+
+        flex-direction:column;
+
+    }
+
+    .sidebar{
+
+        width:100%;
+
+        border-right:none;
+
+        border-bottom:1px solid rgba(255,255,255,.08);
+
+    }
+
+    .content{
+
+        padding:20px;
+
+    }
+
+    .topbar{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:20px;
+
+    }
+
+}

@@ -1,0 +1,241 @@
+/* =========================
+   PESQUISA
+========================= */
+
+.pesquisa{
+
+    display:flex;
+
+    margin-bottom:35px;
+
+}
+
+.pesquisa input{
+
+    flex:1;
+
+    padding:16px 20px;
+
+    background:#181818;
+
+    border:none;
+
+    outline:none;
+
+    color:#fff;
+
+    border-radius:12px 0 0 12px;
+
+    font-size:1rem;
+
+    font-family:"Poppins",sans-serif;
+
+}
+
+.pesquisa button{
+
+    width:65px;
+
+    border:none;
+
+    background:var(--gold);
+
+    color:#111;
+
+    cursor:pointer;
+
+    border-radius:0 12px 12px 0;
+
+    font-size:1.1rem;
+
+    transition:var(--transition);
+
+}
+
+.pesquisa button:hover{
+
+    background:var(--gold-hover);
+
+}
+
+/* =========================
+   LISTA DE MEMBROS
+========================= */
+
+.lista-membros{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:25px;
+
+}
+
+/* =========================
+   CARD DO MEMBRO
+========================= */
+
+.membro-card{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    background:var(--bg2);
+
+    padding:25px;
+
+    border-radius:18px;
+
+    box-shadow:var(--shadow);
+
+    transition:var(--transition);
+
+}
+
+.membro-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+.membro-card img{
+
+    width:75px;
+
+    height:75px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:3px solid var(--gold);
+
+}
+
+.membro-info{
+
+    flex:1;
+
+    margin-left:25px;
+
+}
+
+.membro-info h3{
+
+    font-size:1.3rem;
+
+    margin-bottom:6px;
+
+}
+
+.membro-info p{
+
+    color:var(--gray);
+
+    margin-bottom:12px;
+
+}
+
+/* =========================
+   BOTÕES
+========================= */
+
+.membro-acoes{
+
+    display:flex;
+
+    gap:12px;
+
+}
+
+.membro-acoes button{
+
+    width:48px;
+
+    height:48px;
+
+    border:none;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    transition:var(--transition);
+
+    font-size:1rem;
+
+}
+
+.membro-acoes button:hover{
+
+    transform:translateY(-3px);
+
+}
+
+.btn-editar{
+
+    background:#2563eb;
+
+    color:#fff;
+
+}
+
+.btn-qr{
+
+    background:var(--gold);
+
+    color:#111;
+
+}
+
+.btn-perfil{
+
+    background:#22c55e;
+
+    color:#fff;
+
+}
+
+.btn-excluir{
+
+    background:#dc2626;
+
+    color:#fff;
+
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media(max-width:768px){
+
+    .membro-card{
+
+        flex-direction:column;
+
+        text-align:center;
+
+        gap:20px;
+
+    }
+
+    .membro-info{
+
+        margin-left:0;
+
+    }
+
+    .membro-acoes{
+
+        justify-content:center;
+
+        flex-wrap:wrap;
+
+    }
+
+}
