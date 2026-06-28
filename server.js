@@ -1,9 +1,11 @@
+require("dotenv").config();
 // =========================
 // IMPORTAÇÕES
 // =========================
 
 const express = require("express");
 const path = require("path");
+
 
 const pool = require("./database/connection");
 
@@ -19,7 +21,7 @@ const uploadRoutes = require("./routes/uploadRoutes");
 
 const app = express();
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // =========================
 // MIDDLEWARES
