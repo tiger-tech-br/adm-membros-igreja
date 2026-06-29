@@ -154,6 +154,30 @@ header{
 
 }
 
+.admin-link a{
+
+    background: var(--gold);
+    color: #111;
+    padding: 12px 22px;
+    border-radius: 40px;
+    font-weight: 600;
+    transition: .35s;
+
+}
+
+.admin-link a:hover{
+
+    background: var(--gold2);
+    transform: translateY(-3px);
+
+}
+
+.admin-link a::after{
+
+    display: none;
+
+}
+
 .menu a::after{
 
     content:"";
@@ -1278,31 +1302,6 @@ section{
 
 }
 
-@media(max-width:768px){
-
-    .galeria-grid{
-
-        grid-template-columns:1fr;
-
-    }
-
-}
-
-@media(max-width:768px){
-
-    .evento-card{
-
-        flex-direction:column;
-
-    }
-
-    .data{
-
-        width:100%;
-
-    }
-
-}
 
 
 
@@ -1340,7 +1339,138 @@ section{
 
 }
 
-@media(max-width:768px){
+
+/* =========================
+   RESPONSIVIDADE - TABLETS E CELULARES
+========================= */
+
+@media (max-width:768px){
+
+    /* HEADER */
+
+    .menu{
+
+        position:fixed;
+        top:80px;
+        left:-100%;
+        width:100%;
+        background:#111;
+        flex-direction:column;
+        align-items:center;
+        gap:25px;
+        padding:40px 0;
+        transition:.4s;
+
+    }
+
+    .menu.active{
+
+        left:0;
+
+    }
+
+    .menu-mobile{
+
+        display:block;
+
+    }
+
+    .admin-link{
+
+        margin-top:15px;
+
+    }
+
+    .admin-link a{
+
+        display:block;
+        width:90%;
+        text-align:center;
+        margin:auto;
+
+    }
+
+    .logo img{
+
+        width:130px;
+
+    }
+
+    .navbar{
+
+        height:80px;
+
+    }
+
+    /* HERO */
+
+    .hero{
+
+        text-align:center;
+
+    }
+
+    .hero-content{
+
+        max-width:100%;
+
+    }
+
+    .hero h1{
+
+        font-size:2.4rem;
+
+    }
+
+    .hero p{
+
+        font-size:1rem;
+
+    }
+
+    .hero-buttons{
+
+        justify-content:center;
+
+    }
+
+    /* CONTATO */
+
+    .contato-content{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .contato-form button{
+
+        width:100%;
+
+    }
+
+    /* GALERIA */
+
+    .galeria-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    /* EVENTOS */
+
+    .evento-card{
+
+        flex-direction:column;
+
+    }
+
+    .data{
+
+        width:100%;
+
+    }
+
+    /* GERAL */
 
     section{
 
@@ -1361,7 +1491,6 @@ section{
     }
 
 }
-
 @media(max-width:480px){
 
     .section-title h2{
