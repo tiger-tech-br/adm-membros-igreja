@@ -19,6 +19,10 @@ html{
     scroll-behavior:smooth;
 }
 
+html, body {
+    overflow-x: hidden;
+}
+
 body{
     font-family:"Poppins",sans-serif;
     background:#0b0b0b;
@@ -80,14 +84,10 @@ ul{
 header{
 
     position:fixed;
-
     top:0;
     left:0;
-
     width:100%;
-
     z-index:999;
-
     transition:.4s;
 
 }
@@ -95,106 +95,58 @@ header{
 .navbar{
 
     display:flex;
-
     justify-content:space-between;
-
     align-items:center;
-
     height:90px;
 
 }
 
-/* =========================
-   LOGO
-========================= */
-
 .logo{
 
     display:flex;
-
     align-items:center;
-
-    transition:.3s;
 
 }
 
 .logo img{
 
     width:150px;
-
-    height:auto;
-
     display:block;
-
-    transition:.35s;
-
-}
-
-.logo:hover img{
-
-    transform:scale(1.05);
 
 }
 
 .menu{
 
     display:flex;
-
+    align-items:center;
     gap:35px;
+
+}
+
+.menu li{
+
+    display:flex;
 
 }
 
 .menu a{
 
-    color:white;
-
+    color:#fff;
     font-weight:500;
-
     position:relative;
-
-}
-
-.admin-link a{
-
-    background: var(--gold);
-    color: #111;
-    padding: 12px 22px;
-    border-radius: 40px;
-    font-weight: 600;
-    transition: .35s;
-
-}
-
-.admin-link a:hover{
-
-    background: var(--gold2);
-    transform: translateY(-3px);
-
-}
-
-.admin-link a::after{
-
-    display: none;
 
 }
 
 .menu a::after{
 
     content:"";
-
     position:absolute;
-
     left:0;
-
     bottom:-6px;
-
     width:0;
-
     height:2px;
-
     background:var(--gold);
-
-    transition:.4s;
+    transition:.35s;
 
 }
 
@@ -204,47 +156,32 @@ header{
 
 }
 
-
-
-.btn-header{
-
-    padding:13px 28px;
-
-    border-radius:40px;
+.admin-link a{
 
     background:var(--gold);
-
     color:#111;
-
+    padding:12px 22px;
+    border-radius:40px;
     font-weight:600;
 
-    transition:.4s;
-
 }
 
-.btn-header:hover{
+.admin-link a::after{
 
-    transform:translateY(-4px);
-
-    background:var(--gold2);
-
-}
-
-.sobre-btn{
-
-    margin-top:40px;
+    display:none;
 
 }
 
 .menu-mobile{
 
     display:none;
-
+    color:#fff;
     font-size:2rem;
-
     cursor:pointer;
 
 }
+
+
 
 /* =========================
    HERO
@@ -1179,11 +1116,21 @@ section{
 
 }
 
+
 /* =========================
-   RESPONSIVIDADE - CELULARES
+   RESPONSIVIDADE - CELULAR
 ========================= */
 
 @media (max-width:768px){
+
+    html,
+    body{
+        overflow-x:hidden;
+    }
+
+    .container{
+        width:92%;
+    }
 
     /* HEADER */
 
@@ -1192,22 +1139,24 @@ section{
     }
 
     .logo img{
-        width:130px;
+        width:120px;
     }
 
     .menu-mobile{
         display:block;
-    }
-
-    .btn-header{
-        display:none;
+        font-size:2rem;
+        color:#fff;
+        cursor:pointer;
+        z-index:1001;
     }
 
     .menu{
 
         position:fixed;
+
         top:80px;
         left:-100%;
+
         width:100%;
         height:calc(100vh - 80px);
 
@@ -1219,11 +1168,14 @@ section{
         align-items:center;
 
         gap:25px;
+
         padding:40px 20px;
 
         transition:.35s;
 
         overflow-y:auto;
+
+        z-index:1000;
 
     }
 
@@ -1238,7 +1190,7 @@ section{
     }
 
     .menu a{
-        text-align:center;
+        font-size:1.1rem;
     }
 
     .admin-link{
@@ -1247,17 +1199,13 @@ section{
 
     .admin-link a{
 
-        display:block;
+        width:240px;
 
-        width:220px;
+        display:flex;
 
-        background:var(--gold);
+        justify-content:center;
 
-        color:#111;
-
-        border-radius:40px;
-
-        padding:14px 20px;
+        align-items:center;
 
     }
 
@@ -1272,7 +1220,7 @@ section{
     }
 
     .hero h1{
-        font-size:2.4rem;
+        font-size:2.5rem;
     }
 
     .hero p{
@@ -1280,55 +1228,58 @@ section{
     }
 
     .hero-buttons{
-        justify-content:center;
+
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+
     }
 
-    /* SOBRE */
+    .btn,
+    .btn-outline{
 
-    .sobre-content{
-        grid-template-columns:1fr;
+        width:100%;
+        max-width:340px;
+        text-align:center;
+
     }
 
-    /* MINISTÉRIOS */
+    /* GRID */
 
+    .sobre-content,
+    .cultos-grid,
+    .missao-grid,
+    .pastores-grid,
+    .contato-content,
+    .galeria-grid,
     .cards{
-        grid-template-columns:1fr;
-    }
 
-    /* EVENTOS */
+        grid-template-columns:1fr;
+
+    }
 
     .evento-card{
+
         flex-direction:column;
+
     }
 
     .data{
+
         width:100%;
+
     }
-
-    /* GALERIA */
-
-    .galeria-grid{
-        grid-template-columns:1fr;
-    }
-
-    /* CONTATO */
-
-    .contato-content{
-        grid-template-columns:1fr;
-    }
-
-    .contato-form button{
-        width:100%;
-    }
-
-    /* GERAL */
 
     section{
+
         padding:80px 0;
+
     }
 
     .section-title h2{
+
         font-size:2.2rem;
+
     }
 
 }
