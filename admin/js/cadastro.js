@@ -5,6 +5,16 @@ const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
 
 // =====================================
+// ELEMENTOS
+// =====================================
+
+const inputFoto = document.querySelector("#foto");
+const preview = document.querySelector("#preview");
+
+const campoData = document.querySelector("#dataNascimento");
+const erroData = document.querySelector("#erroData");
+
+// =====================================
 // CARREGAR MEMBRO (EDIÇÃO)
 // =====================================
 
@@ -30,27 +40,41 @@ async function carregarMembro() {
 
         document.querySelector("#nome").value = membro.nome || "";
 
-        document.querySelector("#dataNascimento").value = membro.data_nascimento
-            ? membro.data_nascimento.split("T")[0]
-            : "";
+            if (membro.data_nascimento) {
+
+                const [ano, mes, dia] =
+                membro.data_nascimento.split("T")[0].split("-");
+
+                campoData.value = `${dia}/${mes}/${ano}`;
+
+            }
 
         document.querySelector("#telefone").value = membro.telefone || "";
-
         document.querySelector("#email").value = membro.email || "";
-
         document.querySelector("#endereco").value = membro.endereco || "";
-
         document.querySelector("#cargo").value = membro.cargo || "Membro";
-
         document.querySelector("#ministerio").value = membro.ministerio || "Outro";
-
         document.querySelector("#sexo").value = membro.sexo || "Masculino";
+        document.querySelector("#estadoCivil").value =
+            membro.estado_civil || "Solteiro(a)";
+        document.querySelector("#status").value =
+            membro.status || "Ativo";
+        document.querySelector("#observacoes").value =
+            membro.observacoes || "";
 
-        document.querySelector("#estadoCivil").value = membro.estado_civil || "Solteiro(a)";
+        if (membro.foto) {
 
-        document.querySelector("#status").value = membro.status || "Ativo";
+            preview.src = membro.foto;
 
-        document.querySelector("#observacoes").value = membro.observacoes || "";
+            const textoFoto = document.querySelector(".foto-preview span");
+
+                if (textoFoto) {
+
+                    textoFoto.style.display = "none";
+
+                }
+
+        }
 
     } catch (erro) {
 
@@ -66,9 +90,6 @@ carregarMembro();
 // PREVIEW DA FOTO
 // =====================================
 
-const inputFoto = document.querySelector("#foto");
-const preview = document.querySelector("#preview");
-
 inputFoto.addEventListener("change", (event) => {
 
     const arquivo = event.target.files[0];
@@ -77,7 +98,117 @@ inputFoto.addEventListener("change", (event) => {
 
     preview.src = URL.createObjectURL(arquivo);
 
+    const textoFoto = document.querySelector(".foto-preview span");
+
+    if (textoFoto) {
+
+        textoFoto.style.display = "none";
+
+    }
+
 });
+
+// =====================================
+// MÁSCARA DA DATA
+// =====================================
+
+campoData.addEventListener("input", () => {
+
+    let valor = campoData.value;
+
+    valor = valor.replace(/\D/g, "");
+
+    valor = valor.substring(0, 8);
+
+    if (valor.length > 2) {
+
+        valor = valor.replace(/^(\d{2})(\d)/, "$1/$2");
+
+    }
+
+    if (valor.length > 5) {
+
+        valor = valor.replace(/^(\d{2})\/(\d{2})(\d)/, "$1/$2/$3");
+
+    }
+
+    campoData.value = valor;
+
+    erroData.textContent = "";
+
+    campoData.classList.remove("input-erro");
+    campoData.classList.remove("input-sucesso");
+
+});
+
+// =====================================
+// VALIDAR DATA
+// =====================================
+
+function validarDataNascimento() {
+
+    erroData.textContent = "";
+
+    campoData.classList.remove("input-erro");
+    campoData.classList.remove("input-sucesso");
+
+    const dataDigitada = campoData.value.trim();
+
+    if (dataDigitada === "") {
+
+        return null;
+
+    }
+
+    if (dataDigitada.length !== 10) {
+
+        campoData.classList.add("input-erro");
+
+        erroData.textContent =
+            "Digite a data completa.";
+
+        return false;
+
+    }
+
+    const [dia, mes, ano] =
+        dataDigitada.split("/").map(Number);
+
+    const data = new Date(ano, mes - 1, dia);
+
+    if (
+
+        data.getDate() !== dia ||
+        data.getMonth() !== mes - 1 ||
+        data.getFullYear() !== ano
+
+    ) {
+
+        campoData.classList.add("input-erro");
+
+        erroData.textContent =
+            "Data inválida.";
+
+        return false;
+
+    }
+
+    if (data > new Date()) {
+
+        campoData.classList.add("input-erro");
+
+        erroData.textContent =
+            "A data não pode ser futura.";
+
+        return false;
+
+    }
+
+    campoData.classList.add("input-sucesso");
+
+    return `${ano}-${String(mes).padStart(2, "0")}-${String(dia).padStart(2, "0")}`;
+
+}
 
 // =====================================
 // SALVAR
@@ -87,72 +218,124 @@ formulario.addEventListener("submit", async (e) => {
 
     e.preventDefault();
 
-const formData = new FormData();
+    // ===============================
+    // VALIDAÇÕES
+    // ===============================
 
-formData.append("nome", document.querySelector("#nome").value.trim());
+    const nome = document.querySelector("#nome").value.trim();
+    const telefone = document.querySelector("#telefone").value.trim();
 
-formData.append("dataNascimento", document.querySelector("#dataNascimento").value);
+    if (!nome) {
 
-formData.append("telefone", document.querySelector("#telefone").value.trim());
+        return alert("Informe o nome do membro.");
 
-formData.append("email", document.querySelector("#email").value.trim());
+    }
 
-formData.append("endereco", document.querySelector("#endereco").value.trim());
+    if (!telefone) {
 
-formData.append("cargo", document.querySelector("#cargo").value);
+        return alert("Informe o telefone.");
 
-formData.append("ministerio", document.querySelector("#ministerio").value);
+    }
 
-formData.append("sexo", document.querySelector("#sexo").value);
+    
+    if (dataNascimento !== null) {
 
-formData.append("estadoCivil", document.querySelector("#estadoCivil").value);
+    formData.append("dataNascimento", dataNascimento);
 
-formData.append("status", document.querySelector("#status").value);
+    }
 
-formData.append("observacoes", document.querySelector("#observacoes").value.trim());
+    if (dataNascimento === false) {
 
-const foto = document.querySelector("#foto").files[0];
+        return;
 
-if (foto) {
+    }
 
-    formData.append("foto", foto);
+    // ===============================
+    // MONTA O FORMDATA
+    // ===============================
 
-}
+    const formData = new FormData();
 
-    if (!formData.get("nome")) {
+    formData.append("nome", nome);
 
-    return alert("Informe o nome do membro.");
 
-}
+    formData.append("telefone", telefone);
 
-if (!formData.get("telefone")) {
+    formData.append(
+        "email",
+        document.querySelector("#email").value.trim()
+    );
 
-    return alert("Informe o telefone.");
+    formData.append(
+        "endereco",
+        document.querySelector("#endereco").value.trim()
+    );
 
-}
+    formData.append(
+        "cargo",
+        document.querySelector("#cargo").value
+    );
 
+    formData.append(
+        "ministerio",
+        document.querySelector("#ministerio").value
+    );
+
+    formData.append(
+        "sexo",
+        document.querySelector("#sexo").value
+    );
+
+    formData.append(
+        "estadoCivil",
+        document.querySelector("#estadoCivil").value
+    );
+
+    formData.append(
+        "status",
+        document.querySelector("#status").value
+    );
+
+    formData.append(
+        "observacoes",
+        document.querySelector("#observacoes").value.trim()
+    );
+
+    // ===============================
+    // FOTO
+    // ===============================
+
+    const foto = inputFoto.files[0];
+
+    if (foto) {
+
+        formData.append("foto", foto);
+
+    }
+
+    // ===============================
+    // ENVIO
+    // ===============================
 
     try {
 
         let url = "/api/membros";
-
         let metodo = "POST";
 
         if (id) {
 
             url = `/api/membros/${id}`;
-
             metodo = "PUT";
 
         }
 
-            const resposta = await fetch(url, {
+        const resposta = await fetch(url, {
 
-                method: metodo,
+            method: metodo,
 
-                body: formData
+            body: formData
 
-            });
+        });
 
         const resultado = await resposta.json();
 

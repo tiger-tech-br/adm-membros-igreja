@@ -150,14 +150,21 @@
 
                 </div>
 
-                <div class="form-group">
+                    <div class="form-group">
 
-                    <label>Data de Nascimento</label>
+                        <label>Data de Nascimento</label>
 
-                    <input type="date" id="dataNascimento">
+                        <input
+                            type="text"
+                            id="dataNascimento"
+                            placeholder="dd/mm/aaaa"
+                            maxlength="10"
+                            inputmode="numeric"
+                            autocomplete="off">
 
-                </div>
+                        <small id="erroData" class="erro-campo"></small>
 
+                    </div>
             </div>
 
             <!-- LINHA 2 -->
