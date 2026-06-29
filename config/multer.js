@@ -1,49 +1,22 @@
 const multer = require("multer");
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
+const cloudinary = require("./cloudinary");
 
-const path = require("path");
-
-// Configuração de armazenamento
-
-const storage = multer.diskStorage({
-
-    destination: (req, file, callback) => {
-
-        callback(null, "uploads/");
-
+const storage = new CloudinaryStorage({
+    cloudinary,
+    params: {
+        folder: "igreja-membros",
+        allowed_formats: ["jpg", "jpeg", "png", "webp"],
     },
-
-    filename: (req, file, callback) => {
-
-        const nomeArquivo =
-
-            Date.now() +
-
-            "-" +
-
-            Math.round(Math.random() * 1e9) +
-
-            path.extname(file.originalname);
-
-        callback(null, nomeArquivo);
-
-    }
-
 });
-
-// Aceitar apenas imagens
 
 function fileFilter(req, file, callback) {
 
     const tiposPermitidos = [
-
         "image/jpeg",
-
         "image/jpg",
-
         "image/png",
-
         "image/webp"
-
     ];
 
     if (tiposPermitidos.includes(file.mimetype)) {

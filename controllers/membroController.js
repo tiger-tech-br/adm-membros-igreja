@@ -25,7 +25,7 @@ class MembroController {
         // Salva o caminho da foto enviada
         if (req.file) {
 
-            req.body.foto = "/uploads/" + req.file.filename;
+            req.body.foto = req.file.path;
 
         }
 
@@ -191,7 +191,7 @@ class MembroController {
             // Salva o caminho da nova foto, caso tenha sido enviada
             if (req.file) {
 
-                req.body.foto = "/uploads/" + req.file.filename;
+                req.body.foto = req.file.path;
 
             }
 
