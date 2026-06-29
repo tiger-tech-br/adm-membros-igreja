@@ -539,136 +539,6 @@ header{
 
 }
 
-/* =========================
-   RESPONSIVIDADE
-========================= */
-
-
-
-@media(max-width:768px){
-
-    .menu{
-
-    position:fixed;
-
-    top:80px;
-
-    left:-100%;
-
-    width:100%;
-
-    background:#111;
-
-    flex-direction:column;
-
-    align-items:center;
-
-    gap:25px;
-
-    padding:40px 0;
-
-    transition:.4s;
-
-}
-
-.menu.active{
-
-    left:0;
-
-}
-
-.menu-mobile{
-
-    display:block;
-
-}
-
-.btn-header{
-
-    display:none;
-
-}
-
-    .logo img{
-
-        width:130px;
-
-    }
-
-    .navbar{
-
-        height:80px;
-
-    }
-
-    .hero{
-
-        text-align:center;
-
-    }
-
-    .hero-content{
-
-        max-width:100%;
-
-    }
-
-    .hero h1{
-
-        font-size:2.4rem;
-
-    }
-
-    .hero p{
-
-        font-size:1rem;
-
-    }
-
-    .hero-buttons{
-
-        justify-content:center;
-
-    }
-
-        .contato-content{
-
-        grid-template-columns:1fr;
-
-    }
-
-    .contato-form button{
-
-        width:100%;
-
-    }
-
-}
-
-@media(max-width:480px){
-
-        .logo img{
-
-        width:115px;
-
-    }
-
-    .hero h1{
-
-        font-size:2rem;
-
-    }
-
-    .btn,
-    .btn-outline{
-
-        width:100%;
-
-        text-align:center;
-
-    }
-
-}
 
 /* =========================
    CONFIGURAÇÕES DAS SEÇÕES
@@ -997,15 +867,6 @@ section{
 
 }
 
-@media(max-width:992px){
-
-    .missao-grid{
-
-        grid-template-columns:1fr;
-
-    }
-
-}
 
 /* =========================
    PASTORES
@@ -1085,15 +946,6 @@ section{
 
 }
 
-@media(max-width:992px){
-
-    .pastores-grid{
-
-        grid-template-columns:1fr;
-
-    }
-
-}
 
 
 /* =========================
@@ -1290,63 +1142,66 @@ section{
 
 }
 
-/* RESPONSIVIDADE */
-
-@media(max-width:992px){
-
-    .galeria-grid{
-
-        grid-template-columns:repeat(2,1fr);
-
-    }
-
-}
-
-
-
-
 /* =========================
-   RESPONSIVIDADE
+   RESPONSIVIDADE - TABLETS
 ========================= */
 
-@media(max-width:992px){
-
-        .cultos-grid {
-            
-            grid-template-columns:1fr;
-        }
-
+@media (max-width:992px){
 
     .sobre-content{
-
         grid-template-columns:1fr;
-
         text-align:center;
-
     }
 
     .sobre-text p{
-
         text-align:center;
+    }
 
+    .cultos-grid{
+        grid-template-columns:1fr;
+    }
+
+    .missao-grid{
+        grid-template-columns:1fr;
+    }
+
+    .pastores-grid{
+        grid-template-columns:1fr;
+    }
+
+    .galeria-grid{
+        grid-template-columns:repeat(2,1fr);
     }
 
     .cards{
-
         grid-template-columns:repeat(2,1fr);
-
     }
 
 }
 
-
 /* =========================
-   RESPONSIVIDADE - TABLETS E CELULARES
+   RESPONSIVIDADE - CELULARES
 ========================= */
 
 @media (max-width:768px){
 
     /* HEADER */
+
+    .navbar{
+        height:80px;
+    }
+
+    .logo img{
+        width:130px;
+    }
+
+    .menu-mobile{
+        display:block;
+    }
+
+    .btn-header{
+        display:none;
+    }
 
     .menu{
 
@@ -1354,155 +1209,161 @@ section{
         top:80px;
         left:-100%;
         width:100%;
+        height:calc(100vh - 80px);
+
         background:#111;
+
+        display:flex;
         flex-direction:column;
+        justify-content:flex-start;
         align-items:center;
+
         gap:25px;
-        padding:40px 0;
-        transition:.4s;
+        padding:40px 20px;
+
+        transition:.35s;
+
+        overflow-y:auto;
 
     }
 
     .menu.active{
-
         left:0;
-
     }
 
-    .menu-mobile{
+    .menu li{
+        width:100%;
+        display:flex;
+        justify-content:center;
+    }
 
-        display:block;
-
+    .menu a{
+        text-align:center;
     }
 
     .admin-link{
-
         margin-top:15px;
-
     }
 
     .admin-link a{
 
         display:block;
-        width:90%;
-        text-align:center;
-        margin:auto;
 
-    }
+        width:220px;
 
-    .logo img{
+        background:var(--gold);
 
-        width:130px;
+        color:#111;
 
-    }
+        border-radius:40px;
 
-    .navbar{
-
-        height:80px;
+        padding:14px 20px;
 
     }
 
     /* HERO */
 
     .hero{
-
         text-align:center;
-
     }
 
     .hero-content{
-
         max-width:100%;
-
     }
 
     .hero h1{
-
         font-size:2.4rem;
-
     }
 
     .hero p{
-
         font-size:1rem;
-
     }
 
     .hero-buttons{
-
         justify-content:center;
-
     }
 
-    /* CONTATO */
+    /* SOBRE */
 
-    .contato-content{
-
+    .sobre-content{
         grid-template-columns:1fr;
-
     }
 
-    .contato-form button{
+    /* MINISTÉRIOS */
 
-        width:100%;
-
-    }
-
-    /* GALERIA */
-
-    .galeria-grid{
-
+    .cards{
         grid-template-columns:1fr;
-
     }
 
     /* EVENTOS */
 
     .evento-card{
-
         flex-direction:column;
-
     }
 
     .data{
-
         width:100%;
+    }
 
+    /* GALERIA */
+
+    .galeria-grid{
+        grid-template-columns:1fr;
+    }
+
+    /* CONTATO */
+
+    .contato-content{
+        grid-template-columns:1fr;
+    }
+
+    .contato-form button{
+        width:100%;
     }
 
     /* GERAL */
 
     section{
-
         padding:80px 0;
-
     }
 
     .section-title h2{
-
         font-size:2.2rem;
-
-    }
-
-    .cards{
-
-        grid-template-columns:1fr;
-
     }
 
 }
-@media(max-width:480px){
+
+
+/* =========================
+   CELULARES PEQUENOS
+========================= */
+
+@media (max-width:480px){
+
+    .logo img{
+        width:115px;
+    }
+
+    .hero h1{
+        font-size:2rem;
+    }
+
+    .hero p{
+        font-size:.95rem;
+    }
+
+    .btn,
+    .btn-outline{
+        width:100%;
+        text-align:center;
+    }
 
     .section-title h2{
-
         font-size:1.9rem;
-
     }
 
     .card{
-
         padding:35px 20px;
-
     }
 
 }
