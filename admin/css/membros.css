@@ -250,6 +250,10 @@
 
 }
 
+.novo-membro a {
+    text-decoration: none;
+}
+
 /* =========================
    RESPONSIVO
 ========================= */
