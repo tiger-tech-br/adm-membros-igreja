@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const QRCode = require("qrcode");
 const path = require("path");
 
@@ -10,7 +12,7 @@ async function gerarQRCode(id) {
     const caminhoCompleto = path.join(pasta, nomeArquivo);
 
     // O QR Code abrirá a página de validação
-    const conteudo = `http://localhost:3000/validar?id=${id}`;
+    const conteudo = `${process.env.APP_URL}/validar?id=${id}`;
 
     await QRCode.toFile(caminhoCompleto, conteudo);
 
@@ -19,7 +21,5 @@ async function gerarQRCode(id) {
 }
 
 module.exports = {
-
     gerarQRCode
-
 };
