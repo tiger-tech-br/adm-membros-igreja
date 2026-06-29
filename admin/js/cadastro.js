@@ -63,6 +63,23 @@ async function carregarMembro() {
 carregarMembro();
 
 // =====================================
+// PREVIEW DA FOTO
+// =====================================
+
+const inputFoto = document.querySelector("#foto");
+const preview = document.querySelector("#preview");
+
+inputFoto.addEventListener("change", (event) => {
+
+    const arquivo = event.target.files[0];
+
+    if (!arquivo) return;
+
+    preview.src = URL.createObjectURL(arquivo);
+
+});
+
+// =====================================
 // SALVAR
 // =====================================
 
