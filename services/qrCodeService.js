@@ -1,25 +1,67 @@
+// =====================================
+// VARIÁVEIS DE AMBIENTE
+// =====================================
+
 require("dotenv").config();
 
-const QRCode = require("qrcode");
-const path = require("path");
+// =====================================
+// IMPORTAÇÕES
+// =====================================
+
+const QRCode =
+    require("qrcode");
+
+const path =
+    require("path");
+
+// =====================================
+// GERAR QR CODE
+// =====================================
 
 async function gerarQRCode(id) {
 
-    const pasta = path.join(__dirname, "..", "qrcodes");
+    const pasta = path.join(
 
-    const nomeArquivo = `membro-${id}.png`;
+        __dirname,
 
-    const caminhoCompleto = path.join(pasta, nomeArquivo);
+        "..",
 
-    // O QR Code abrirá a página de validação
-    const conteudo = `${process.env.APP_URL}/validar?id=${id}`;
+        "qrcodes"
 
-    await QRCode.toFile(caminhoCompleto, conteudo);
+    );
+
+    const nomeArquivo =
+        `membro-${id}.png`;
+
+    const caminhoCompleto = path.join(
+
+        pasta,
+
+        nomeArquivo
+
+    );
+
+    const conteudo =
+        `${process.env.APP_URL}/validar?id=${id}`;
+
+    await QRCode.toFile(
+
+        caminhoCompleto,
+
+        conteudo
+
+    );
 
     return `/qrcodes/${nomeArquivo}`;
 
 }
 
+// =====================================
+// EXPORTAÇÃO
+// =====================================
+
 module.exports = {
+
     gerarQRCode
+
 };

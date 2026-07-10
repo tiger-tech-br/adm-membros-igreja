@@ -1,46 +1,83 @@
+// =====================================
+// IMPORTAÇÕES
+// =====================================
+
 const express = require("express");
+
+const membroController =
+    require("../controllers/membroController");
+
+// =====================================
+// ROUTER
+// =====================================
 
 const router = express.Router();
 
-const upload = require("../config/multer");
+// =====================================
+// ROTAS
+// =====================================
 
-const membroController = require("../controllers/membroController");
+// Cadastrar membro
 
-// Listar todos
-router.get("/", membroController.listar);
-
-// Validar credencial
-router.get("/validar/:id", membroController.validar);
-
-// Buscar por ID
-router.get("/:id", membroController.buscarPorId);
-
-// Cadastrar
 router.post(
 
     "/",
-
-    upload.single("foto"),
 
     membroController.criar
 
 );
 
-// Atualizar membro
-router.put(
+// Listar membros
 
-    "/:id",
+router.get(
+    "/",
+    membroController.listar
+);
 
-    upload.single("foto"),
+// Dashboard
 
-    membroController.atualizar
+router.get(
+    "/dashboard",
+    membroController.dashboard
+);
 
+// Últimos cadastrados
+
+router.get(
+    "/ultimos",
+    membroController.ultimos
 );
 
 // Validar credencial
-router.get("/validar/:id", membroController.validar);
 
-// Excluir
-router.delete("/:id", membroController.excluir);
+router.get(
+    "/validar/:id",
+    membroController.validar
+);
+
+// Buscar por ID
+
+router.get(
+    "/:id",
+    membroController.buscarPorId
+);
+
+// Atualizar membro
+
+router.put(
+    "/:id",
+    membroController.atualizar
+);
+
+// Excluir membro
+
+router.delete(
+    "/:id",
+    membroController.excluir
+);
+
+// =====================================
+// EXPORTAÇÃO
+// =====================================
 
 module.exports = router;

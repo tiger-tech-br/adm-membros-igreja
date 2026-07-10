@@ -1,87 +1,130 @@
-const pool = require("../database/connection");
+// =====================================
+// IMPORTAÇÃO
+// =====================================
+
+const pool =
+    require("../database/connection");
+
+// =====================================
+// CLASSE
+// =====================================
 
 class MembroModel {
 
+    // =====================================
+    // CRIAR
+    // =====================================
+
     async criar(dados) {
 
-    const {
-
-        nome,
-        dataNascimento,
-        telefone,
-        email,
-        endereco,
-        cargo,
-        ministerio,
-        sexo,
-        estadoCivil,
-        status,
-        observacoes,
-        foto
-
-    } = dados;
-
-    const sql = `
-
-        INSERT INTO membros (
+        const {
 
             nome,
-            data_nascimento,
+            dataNascimento,
             telefone,
             email,
             endereco,
             cargo,
             ministerio,
             sexo,
-            estado_civil,
+            estadoCivil,
             status,
             observacoes,
-            foto
+            matricula,
+            validade
 
-        )
+        } = dados;
 
-        VALUES (
+        const sql = `
 
-            $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12
+            INSERT INTO membros (
 
-        )
+                nome,
+                data_nascimento,
+                telefone,
+                email,
+                endereco,
+                cargo,
+                ministerio,
+                sexo,
+                estado_civil,
+                status,
+                observacoes,
+                matricula,
+                validade
 
-        RETURNING *;
+            )
 
-    `;
+            VALUES (
 
-    const valores = [
+                $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13
 
-        nome,
-        dataNascimento || null,
-        telefone,
-        email,
-        endereco,
-        cargo,
-        ministerio,
-        sexo,
-        estadoCivil,
-        status,
-        observacoes,
-        foto
+            )
 
-    ];
+            RETURNING *;
 
-    try {
+        `;
 
-        const resultado = await pool.query(sql, valores);
+        const valores = [
 
-        return resultado.rows[0];
+            nome,
 
-    } catch (erro) {
+            dataNascimento || null,
 
-        console.error("[MEMBRO_MODEL][CRIAR]", erro);
+            telefone,
 
-        throw erro;
+            email,
+
+            endereco,
+
+            cargo,
+
+            ministerio,
+
+            sexo,
+
+            estadoCivil,
+
+            status,
+
+            observacoes,
+
+            matricula,
+
+            validade
+
+        ];
+
+        try {
+
+            const resultado =
+                await pool.query(sql, valores);
+
+            return resultado.rows[0];
+
+        } catch (erro) {
+
+            console.error(
+
+                "[MEMBRO_MODEL][CRIAR]",
+
+                erro
+
+            );
+
+            throw erro;
+
+        }
 
     }
 
-}
+    // =====================================
+    // LISTAR
+    // =====================================
+
+        // =====================================
+    // LISTAR
+    // =====================================
 
     async listar() {
 
@@ -97,13 +140,20 @@ class MembroModel {
 
         try {
 
-            const resultado = await pool.query(sql);
+            const resultado =
+                await pool.query(sql);
 
             return resultado.rows;
 
         } catch (erro) {
 
-            console.error("[MEMBRO_MODEL][LISTAR]", erro);
+            console.error(
+
+                "[MEMBRO_MODEL][LISTAR]",
+
+                erro
+
+            );
 
             throw erro;
 
@@ -111,139 +161,258 @@ class MembroModel {
 
     }
 
+    // =====================================
+    // BUSCAR POR ID
+    // =====================================
+
     async buscarPorId(id) {
 
-    const sql = `
+        const sql = `
 
-        SELECT *
+            SELECT *
 
-        FROM membros
+            FROM membros
 
-        WHERE id = $1;
+            WHERE id = $1;
 
-    `;
+        `;
 
-    try {
+        try {
 
-        const resultado = await pool.query(sql, [id]);
+            const resultado =
+                await pool.query(
 
-        return resultado.rows[0];
+                    sql,
 
-    } catch (erro) {
+                    [id]
 
-        console.error("[MEMBRO_MODEL][BUSCAR_POR_ID]", erro);
+                );
 
-        throw erro;
+            return resultado.rows[0];
 
-    }
+        } catch (erro) {
 
-}
+            console.error(
 
-async atualizar(id, dados) {
+                "[MEMBRO_MODEL][BUSCAR_POR_ID]",
 
-    const {
+                erro
 
-        nome,
-        dataNascimento,
-        telefone,
-        email,
-        endereco,
-        cargo,
-        ministerio,
-        sexo,
-        estadoCivil,
-        status,
-        observacoes,
-        foto
+            );
 
-    } = dados;
+            throw erro;
 
-    const sql = `
-
-        UPDATE membros
-
-        SET
-
-            nome = $1,
-            data_nascimento = $2,
-            telefone = $3,
-            email = $4,
-            endereco = $5,
-            cargo = $6,
-            ministerio = $7,
-            sexo = $8,
-            estado_civil = $9,
-            status = $10,
-            observacoes = $11,
-            foto = $12
-
-        WHERE id = $13
-
-        RETURNING *;
-
-    `;
-
-    const valores = [
-
-        nome,
-        dataNascimento || null,
-        telefone,
-        email,
-        endereco,
-        cargo,
-        ministerio,
-        sexo,
-        estadoCivil,
-        status,
-        observacoes,
-        foto,
-        id
-
-    ];
-
-    try {
-
-        const resultado = await pool.query(sql, valores);
-
-        return resultado.rows[0];
-
-    } catch (erro) {
-
-        console.error("[MEMBRO_MODEL][ATUALIZAR]", erro);
-
-        throw erro;
+        }
 
     }
 
-}
+    // =====================================
+    // BUSCAR POR MATRÍCULA
+    // =====================================
 
-async excluir(id) {
+    async buscarPorMatricula(matricula) {
 
-    const sql = `
+        const sql = `
 
-        DELETE FROM membros
+            SELECT id
 
-        WHERE id = $1
+            FROM membros
 
-        RETURNING *;
+            WHERE matricula = $1
 
-    `;
+            LIMIT 1;
 
-    try {
+        `;
 
-        const resultado = await pool.query(sql, [id]);
+        try {
 
-        return resultado.rows[0];
+            const resultado =
+                await pool.query(
 
-    } catch (erro) {
+                    sql,
 
-        console.error("[MEMBRO_MODEL][EXCLUIR]", erro);
+                    [matricula]
 
-        throw erro;
+                );
+
+            return resultado.rows[0] || null;
+
+        } catch (erro) {
+
+            console.error(
+
+                "[MEMBRO_MODEL][BUSCAR_MATRICULA]",
+
+                erro
+
+            );
+
+            throw erro;
+
+        }
 
     }
 
-}
+    // =====================================
+    // ATUALIZAR
+    // =====================================
+
+        // =====================================
+    // ATUALIZAR
+    // =====================================
+
+    async atualizar(id, dados) {
+
+        const {
+
+            nome,
+            dataNascimento,
+            telefone,
+            email,
+            endereco,
+            cargo,
+            ministerio,
+            sexo,
+            estadoCivil,
+            status,
+            observacoes,
+            matricula
+
+        } = dados;
+
+        const sql = `
+
+            UPDATE membros
+
+            SET
+
+                nome = $1,
+                data_nascimento = $2,
+                telefone = $3,
+                email = $4,
+                endereco = $5,
+                cargo = $6,
+                ministerio = $7,
+                sexo = $8,
+                estado_civil = $9,
+                status = $10,
+                observacoes = $11,
+                matricula = $12
+
+            WHERE id = $13
+
+            RETURNING *;
+
+        `;
+
+        const valores = [
+
+            nome,
+
+            dataNascimento || null,
+
+            telefone,
+
+            email,
+
+            endereco,
+
+            cargo,
+
+            ministerio,
+
+            sexo,
+
+            estadoCivil,
+
+            status,
+
+            observacoes,
+
+            matricula,
+
+            id
+
+        ];
+
+        try {
+
+            const resultado =
+                await pool.query(
+
+                    sql,
+
+                    valores
+
+                );
+
+            return resultado.rows[0];
+
+        } catch (erro) {
+
+            console.error(
+
+                "[MEMBRO_MODEL][ATUALIZAR]",
+
+                erro
+
+            );
+
+            throw erro;
+
+        }
+
+    }
+
+    // =====================================
+    // EXCLUIR
+    // =====================================
+
+    async excluir(id) {
+
+        const sql = `
+
+            DELETE FROM membros
+
+            WHERE id = $1
+
+            RETURNING *;
+
+        `;
+
+        try {
+
+            const resultado =
+                await pool.query(
+
+                    sql,
+
+                    [id]
+
+                );
+
+            return resultado.rows[0];
+
+        } catch (erro) {
+
+            console.error(
+
+                "[MEMBRO_MODEL][EXCLUIR]",
+
+                erro
+
+            );
+
+            throw erro;
+
+        }
+
+    }
+
+    // =====================================
+    // ATUALIZAR QR CODE
+    // =====================================
+
 
     async atualizarQRCode(id, qrCode) {
 
@@ -261,19 +430,249 @@ async excluir(id) {
 
         try {
 
-            const resultado = await pool.query(sql, [qrCode, id]);
+            const resultado =
+                await pool.query(
+
+                    sql,
+
+                    [
+
+                        qrCode,
+
+                        id
+
+                    ]
+
+                );
 
             return resultado.rows[0];
 
         } catch (erro) {
 
-            console.error("[MEMBRO_MODEL][ATUALIZAR_QRCODE]", erro);
+            console.error(
+
+                "[MEMBRO_MODEL][ATUALIZAR_QRCODE]",
+
+                erro
+
+            );
 
             throw erro;
 
         }
 
     }
+
+    // =====================================
+    // LISTAR SEM MATRÍCULA
+    // =====================================
+
+    async listarSemMatricula() {
+
+        const sql = `
+
+            SELECT *
+
+            FROM membros
+
+            WHERE matricula IS NULL
+
+               OR validade IS NULL;
+
+        `;
+
+        try {
+
+            const resultado =
+                await pool.query(sql);
+
+            return resultado.rows;
+
+        } catch (erro) {
+
+            console.error(
+
+                "[MEMBRO_MODEL][LISTAR_SEM_MATRICULA]",
+
+                erro
+
+            );
+
+            throw erro;
+
+        }
+
+    }
+
+    // =====================================
+    // ATUALIZAR MATRÍCULA E VALIDADE
+    // =====================================
+
+    async atualizarMatriculaValidade(
+
+        id,
+
+        matricula,
+
+        validade
+
+    ) {
+
+        const sql = `
+
+            UPDATE membros
+
+            SET
+
+                matricula = $1,
+
+                validade = $2
+
+            WHERE id = $3;
+
+        `;
+
+        try {
+
+            await pool.query(
+
+                sql,
+
+                [
+
+                    matricula,
+
+                    validade,
+
+                    id
+
+                ]
+
+            );
+
+        } catch (erro) {
+
+            console.error(
+
+                "[MEMBRO_MODEL][ATUALIZAR_MATRICULA]",
+
+                erro
+
+            );
+
+            throw erro;
+
+        }
+
+    }
+
+    // =====================================
+    // ÚLTIMOS MEMBROS
+    // =====================================
+
+    async listarUltimos(limit = 5) {
+
+        const sql = `
+
+            SELECT
+
+                id,
+
+                nome,
+
+                cargo
+
+            FROM membros
+
+            ORDER BY id DESC
+
+            LIMIT $1;
+
+        `;
+
+        try {
+
+            const resultado =
+                await pool.query(
+
+                    sql,
+
+                    [limit]
+
+                );
+
+            return resultado.rows;
+
+        } catch (erro) {
+
+            console.error(
+
+                "[MEMBRO_MODEL][ULTIMOS]",
+
+                erro
+
+            );
+
+            throw erro;
+
+        }
+
+    }
+
+    // =====================================
+    // DASHBOARD
+    // =====================================
+
+    async dashboard() {
+
+        try {
+
+            const total =
+                await pool.query(`
+
+                    SELECT COUNT(*) AS total
+
+                    FROM membros;
+
+                `);
+
+            const ultimos =
+                await this.listarUltimos();
+
+            return {
+
+                totalMembros:
+
+                    Number(
+
+                        total.rows[0].total
+
+                    ),
+
+                ultimos
+
+            };
+
+        } catch (erro) {
+
+            console.error(
+
+                "[MEMBRO_MODEL][DASHBOARD]",
+
+                erro
+
+            );
+
+            throw erro;
+
+        }
+
+    }
+
 }
+
+// =====================================
+// EXPORTAÇÃO
+// =====================================
 
 module.exports = new MembroModel();

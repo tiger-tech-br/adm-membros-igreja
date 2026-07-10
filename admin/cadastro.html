@@ -3,357 +3,547 @@
 
 <head>
 
+    <!-- ========================= -->
+    <!-- META -->
+    <!-- ========================= -->
+
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        name="viewport"
 
-    <title>Cadastrar Membro</title>
+        content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="/admin/css/global.css">
-    <link rel="stylesheet" href="/admin/css/menu.css">
-    <link rel="stylesheet" href="/admin/css/cadastro.css">
+    <title>
 
-    <link rel="preconnect"
-          href="https://fonts.googleapis.com">
+        Cadastrar Membro
 
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
+    </title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-          rel="stylesheet">
+    <!-- ========================= -->
+    <!-- GOOGLE FONTS -->
+    <!-- ========================= -->
 
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link
+
+        rel="preconnect"
+
+        href="https://fonts.googleapis.com">
+
+    <link
+
+        rel="preconnect"
+
+        href="https://fonts.gstatic.com"
+
+        crossorigin>
+
+    <link
+
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+
+        rel="stylesheet">
+
+    <!-- ========================= -->
+    <!-- FONT AWESOME -->
+    <!-- ========================= -->
+
+    <link
+
+        rel="stylesheet"
+
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- ========================= -->
+    <!-- CSS GLOBAL -->
+    <!-- ========================= -->
+
+    <link rel="stylesheet" href="/admin/css/global/reset.css">
+
+    <link rel="stylesheet" href="/admin/css/global/variables.css">
+
+    <link rel="stylesheet" href="/admin/css/global/base.css">
+
+    <link rel="stylesheet" href="/admin/css/layout/layout.css">
+
+    <link rel="stylesheet" href="/admin/css/pages/cadastro.css?v=2.0.0">
 
 </head>
 
-<body>
+    <body>
+
+    <!-- ========================= -->
+    <!-- OVERLAY -->
+    <!-- ========================= -->
+
     <div class="overlay"></div>
-    
-<div class="dashboard">
 
-    <aside class="sidebar">
+    <!-- ========================= -->
+    <!-- DASHBOARD -->
+    <!-- ========================= -->
 
-        <div class="logo">
+    <div class="dashboard">
 
-            <img src="/images/assembleia-logo.png"
-                 alt="Logo">
+        <!-- ========================= -->
+        <!-- SIDEBAR -->
+        <!-- ========================= -->
 
-        </div>
+        <aside class="sidebar">
 
-        <ul class="menu">
+            <div class="logo">
 
-            <li>
+                <img
 
-                <a href="/dashboard">
+                    src="/images/assembleia-logo.png"
 
-                    <i class="fa-solid fa-chart-line"></i>
-
-                    Dashboard
-
-                </a>
-
-            </li>
-
-            <li>
-
-                <a href="/membros">
-
-                    <i class="fa-solid fa-users"></i>
-
-                    Membros
-
-                </a>
-
-            </li>
-
-            <li class="active">
-
-                <a href="/cadastro">
-
-                    <i class="fa-solid fa-user-plus"></i>
-
-                    Cadastrar
-
-                </a>
-
-            </li>
-
-        </ul>
-
-    </aside>
-
-    <main class="content">
-
-        <header class="topbar">
-
-            <div>
-
-                <h1>Cadastrar Membro</h1>
-
-                <p>Preencha os dados do novo membro.</p>
+                    alt="Logo da Igreja">
 
             </div>
 
-        </header>
+            <nav>
 
-        <form class="cadastro-form" id="formCadastro" enctype="multipart/form-data">
-            <!-- FOTO -->
+                <ul class="menu">
 
-            <!-- FOTO -->
+                    <li>
 
-            <div class="form-group">
+                        <a href="/dashboard">
 
-                <label>Foto do Membro</label>
+                            <i class="fa-solid fa-chart-line"></i>
 
-                <div class="upload-foto">
+                            Dashboard
 
-                    <input
-                        type="file"
-                        id="foto"
-                        accept="image/*"
-                        hidden>
+                        </a>
 
-                    <label
-                        for="foto"
-                        class="foto-preview">
+                    </li>
 
-                        <img
-                            id="preview"
-                            src="/images/user.png"
-                            alt="Foto">
+                    <li>
 
-                        <span>
+                        <a href="/membros">
 
-                            Clique para adicionar uma foto
+                            <i class="fa-solid fa-users"></i>
 
-                        </span>
+                            Membros
 
-                    </label>
+                        </a>
+
+                    </li>
+
+                    <li class="active">
+
+                        <a href="/cadastro">
+
+                            <i class="fa-solid fa-user-plus"></i>
+
+                            Cadastrar
+
+                        </a>
+
+                    </li>
+
+                    <li class="logout">
+
+                        <a href="/logout">
+
+                            <i class="fa-solid fa-right-from-bracket"></i>
+
+                            Sair
+
+                        </a>
+
+                    </li>
+
+                </ul>
+
+            </nav>
+
+        </aside>
+
+        <!-- ========================= -->
+        <!-- CONTEÚDO -->
+        <!-- ========================= -->
+
+        <main class="content">
+
+            <!-- ========================= -->
+            <!-- TOPBAR -->
+            <!-- ========================= -->
+
+            <header class="topbar">
+
+                <div>
+
+                    <h1>
+
+                        Cadastrar Membro
+
+                    </h1>
+
+                    <p>
+
+                        Preencha os dados do novo membro.
+
+                    </p>
 
                 </div>
 
-            </div>
+                <button
 
-            <!-- LINHA 1 -->
+                    id="btnMenu"
 
-            <div class="form-grid">
+                    class="menu-toggle"
 
-                <div class="form-group">
+                    aria-label="Abrir menu">
 
-                    <label>Nome Completo</label>
+                    <i class="fa-solid fa-bars"></i>
 
-                    <input type="text"
-                        placeholder="Digite o nome completo" id="nome" name="nome">
+                </button>
 
-                </div>
+            </header>
+
+            <!-- ========================= -->
+            <!-- FORMULÁRIO -->
+            <!-- ========================= -->
+
+            <form
+
+                id="formCadastro"
+
+                class="cadastro-form"
+
+                enctype="multipart/form-data"
+                
+                aria-label="Formulário de cadastro de membro">
+
+                <!-- ========================= -->
+                <!-- DADOS PESSOAIS -->
+                <!-- ========================= -->
+
+
+                            <!-- LINHA 1 -->
+
+                <div class="form-grid">
 
                     <div class="form-group">
 
-                        <label>Data de Nascimento</label>
+                        <label for="nome">
+
+                            Nome Completo
+
+                        </label>
 
                         <input
-                            type="text"
-                            id="dataNascimento"
-                            placeholder="dd/mm/aaaa"
-                            maxlength="10"
-                            inputmode="numeric"
-                            autocomplete="off">
 
-                        <small id="erroData" class="erro-campo"></small>
+                            type="text"
+
+                            id="nome"
+
+                            name="nome"
+
+                            placeholder="Digite o nome completo">
 
                     </div>
-            </div>
 
-            <!-- LINHA 2 -->
+                    <div class="form-group">
 
-            <div class="form-grid">
+                        <label for="dataNascimento">
 
-                <div class="form-group">
+                            Data de Nascimento
 
-                    <label>Telefone</label>
+                        </label>
 
-                    <input type="tel"
-                        placeholder="(11) 99999-9999" id="telefone" name="telefone">
+                        <input
 
-                </div>
+                            type="text"
 
-                <div class="form-group">
+                            id="dataNascimento"
+                            
+                            name="dataNascimento"
 
-                    <label>E-mail (Opcional)</label>
+                            maxlength="10"
 
-                    <input type="email"
-                        placeholder="email@exemplo.com" id="email" name="email">
+                            inputmode="numeric"
 
-                </div>
 
-            </div>
+                            autocomplete="off"
 
-            <!-- ENDEREÇO -->
+                            placeholder="dd/mm/aaaa">
 
-            <div class="form-group">
+                        <small
 
-                <label>Endereço</label>
+                            id="erroData"
 
-                <input type="text"
-                    placeholder="Rua, número, bairro..." id="endereco" name="endereco">
+                            class="erro-campo">
 
-            </div>
+                        </small>
 
-            <!-- LINHA 3 -->
-
-            <div class="form-grid">
-
-                <div class="form-group">
-
-                    <label>Cargo</label>
-
-                    <select id="cargo" name="cargo">
-
-                        <option>Membro</option>
-
-                        <option>Pastor</option>
-
-                        <option>Presbítero</option>
-
-                        <option>Diácono</option>
-
-                        <option>Evangelista</option>
-
-                        <option>Missionário</option>
-
-                        <option>Obreiro</option>
-
-                    </select>
+                    </div>
 
                 </div>
 
-                <div class="form-group">
+                <!-- LINHA 2 -->
 
-                    <label>Ministério</label>
+                <div class="form-grid">
 
-                    <select id="ministerio" name="ministerio">
+                    <div class="form-group">
 
-                        <option>Louvor</option>
+                        <label for="telefone">
 
-                        <option>Infantil</option>
+                            Telefone
 
-                        <option>Jovens</option>
+                        </label>
 
-                        <option>Casais</option>
+                        <input
 
-                        <option>Intercessão</option>
+                            type="tel"
 
-                        <option>Mídia</option>
+                            id="telefone"
 
-                        <option>Recepção</option>
+                            name="telefone"
 
-                        <option>Outro</option>
+                            placeholder="(11) 99999-9999">
 
-                    </select>
+                    </div>
 
-                </div>
+                    <div class="form-group">
 
-            </div>
+                        <label for="email">
 
-            <!-- LINHA 4 -->
+                            E-mail (Opcional)
 
-            <div class="form-grid">
+                        </label>
 
-                <div class="form-group">
+                        <input
 
-                    <label>Sexo</label>
+                            type="email"
 
-                    <select id="sexo" name="sexo">
+                            id="email"
 
-                        <option>Masculino</option>
+                            name="email"
 
-                        <option>Feminino</option>
+                            placeholder="email@exemplo.com">
 
-                    </select>
-
-                </div>
-
-                <div class="form-group">
-
-                    <label>Estado Civil</label>
-
-                    <select id="estadoCivil" name="estadoCivil">
-
-                        <option>Solteiro(a)</option>
-
-                        <option>Casado(a)</option>
-
-                        <option>Divorciado(a)</option>
-
-                        <option>Viúvo(a)</option>
-
-                    </select>
+                    </div>
 
                 </div>
 
-            </div>
+                <!-- ENDEREÇO -->
 
-            <!-- STATUS -->
+                <div class="form-group">
 
-            <div class="form-group">
+                    <label for="endereco">
 
-                <label>Status</label>
+                        Endereço
 
-                <select id="status" name="status">
+                    </label>
 
-                    <option>Ativo</option>
+                    <input
 
-                    <option>Inativo</option>
+                        type="text"
 
-                </select>
+                        id="endereco"
 
-            </div>
+                        name="endereco"
 
-            <!-- OBSERVAÇÕES -->
+                        placeholder="Rua, número, bairro...">
 
-            <div class="form-group">
+                </div>
 
-                <label>Observações</label>
+                <!-- LINHA 3 -->
 
-                <textarea id="observacoes" name="observacoes"
-                    placeholder="Informações adicionais..."></textarea>
+                <div class="form-grid">
 
-            </div>
+                    <div class="form-group">
 
-            <!-- BOTÕES -->
+                        <label for="cargo">
 
-            <div class="form-buttons">
+                            Cargo
 
-                <button
-                    type="reset"
-                    class="btn-cancelar">
+                        </label>
 
-                    Limpar
+                        <select
 
-                </button>
+                            id="cargo"
 
-                <button
-                    type="submit"
-                    class="btn-salvar">
+                            name="cargo">
 
-                    Salvar Membro
+                            <option value="Membro">Membro</option>
 
-                </button>
+                            <option value="Pastor">Pastor</option>
 
-            </div>
+                            <option value="Presbítero">Presbítero</option>
+
+                            <option value="Diácono">Diácono</option>
+
+                            <option value="Evangelista">Evangelista</option>
+
+                            <option value="Missionário">Missionário</option>
+
+                            <option value="Obreiro">Obreiro</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="ministerio">
+
+                            Ministério
+
+                        </label>
+
+                        <select
+
+                            id="ministerio"
+
+                            name="ministerio">
+
+                            <option value="Louvor">Louvor</option>
+
+                            <option value="Infantil">Infantil</option>
+
+                            <option value="Jovens">Jovens</option>
+
+                            <option value="Casais">Casais</option>
+
+                            <option value="Intercessão">Intercessão</option>
+
+                            <option value="Mídia">Mídia</option>
+
+                            <option value="Recepção">Recepção</option>
+
+                            <option value="Outro">Outro</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <!-- LINHA 4 -->
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label for="sexo">
+
+                            Sexo
+
+                        </label>
+
+                        <select
+
+                            id="sexo"
+
+                            name="sexo">
+
+                            <option>Masculino</option>
+
+                            <option>Feminino</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="estadoCivil">
+
+                            Estado Civil
+
+                        </label>
+
+                        <select
+
+                            id="estadoCivil"
+
+                            name="estadoCivil">
+
+                            <option value="Solteiro(a)">Solteiro(a)</option>
+
+                            <option value="Casado(a)">Casado(a)</option>
+
+                            <option value="Divorciado(a)">Divorciado(a)</option>
+
+                            <option value="Viúvo(a)">Viúvo(a)</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <!-- OBSERVAÇÕES -->
+
+                <div class="form-group">
+
+                    <label for="observacoes">
+
+                        Observações
+
+                    </label>
+
+                    <textarea
+
+                        id="observacoes"
+
+                        name="observacoes"
+
+                        placeholder="Informações adicionais...">
+
+                    </textarea>
+
+                </div>
+
+                <!-- BOTÕES -->
+
+                <div class="form-buttons">
+
+                    <button
+
+                        type="reset"
+
+                        class="btn-cancelar">
+
+                        Limpar
+
+                    </button>
+
+                    <button
+
+                        type="submit"
+
+                        class="btn-salvar">
+
+                        Salvar Membro
+
+                    </button>
+
+                </div>
 
             </form>
 
         </main>
 
     </div>
-<script src="/admin/js/menu.js"></script>
-<script src="/admin/js/cadastro.js"></script>
+
+    <!-- ========================= -->
+    <!-- JAVASCRIPT -->
+    <!-- ========================= -->
+
+    <script
+
+        src="/admin/js/layout/menu.js?v=2.0.0">
+
+    </script>
+
+    <script
+
+        src="/admin/js/cadastro/cadastro.js?v=2.0.0">
+
+    </script>
 
 </body>
 

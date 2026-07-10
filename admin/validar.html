@@ -3,56 +3,218 @@
 
 <head>
 
+    <!-- ========================= -->
+    <!-- META -->
+    <!-- ========================= -->
+
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta
 
-    <title>Validar Credencial</title>
+        name="viewport"
 
-    <link rel="stylesheet"
-          href="/admin/css/validar.css">
+        content="width=device-width, initial-scale=1.0">
 
-    <link rel="preconnect"
-          href="https://fonts.googleapis.com">
+    <title>
 
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
+        Validação de Credencial
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-          rel="stylesheet">
+    </title>
 
+    <!-- ========================= -->
+    <!-- GOOGLE FONTS -->
+    <!-- ========================= -->
+
+    <link
+
+        rel="preconnect"
+
+        href="https://fonts.googleapis.com">
+
+    <link
+
+        rel="preconnect"
+
+        href="https://fonts.gstatic.com"
+
+        crossorigin>
+
+    <link
+
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+
+        rel="stylesheet">
+
+    <!-- ========================= -->
+    <!-- FONT AWESOME -->
+    <!-- ========================= -->
+
+    <link
+
+        rel="stylesheet"
+
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- ========================= -->
+    <!-- CSS GLOBAL -->
+    <!-- ========================= -->
+
+        <link
+
+            rel="stylesheet"
+
+            href="/admin/css/global/global.css">
+
+        <link
+
+            rel="stylesheet"
+
+            href="/admin/css/layout/layout.css">
+
+        <link
+
+            rel="stylesheet"
+
+            href="/admin/css/pages/validar.css?v=2.0.0">
 </head>
 
 <body>
-    <div class="overlay"></div>
 
-    <div class="container">
+    <!-- ========================= -->
+    <!-- CONTAINER -->
+    <!-- ========================= -->
 
-        <div class="card">
+    <main class="validar-container">
+
+        <!-- ========================= -->
+        <!-- CARD -->
+        <!-- ========================= -->
+
+        <section class="validar-card">
 
             <img
-                id="foto"
-                src="/images/user.png"
-                class="foto">
 
-            <h1 id="nome"></h1>
+                src="/images/assembleia-logo.png"
 
-            <h3 id="cargo"></h3>
+                alt="Logo da Igreja"
 
-            <p id="ministerio"></p>
+                class="logo">
 
-            <div id="status"
-                 class="status">
+            <h1>
+
+                Assembleia de Deus
+
+            </h1>
+
+            <p class="subtitulo">
+
+                Credencial Validada
+
+            </p>
+
+            <div
+
+                class="status"
+
+                id="statusCredencial">
+
+                <i
+
+                    class="fa-solid fa-circle-check"
+
+                    aria-hidden="true">
+
+                </i>
+
+                <span>
+
+                    Credencial válida
+
+                </span>
 
             </div>
 
-        </div>
+            <div class="dados-membro">
 
-    </div>
+                <div class="info">
 
-<script src="/admin/js/validar.js"></script>
+                    <strong>
+
+                        Nome da Igreja
+
+                    </strong>
+
+                    <span>
+
+                        Assembleia de Deus
+
+                    </span>
+
+                </div>
+
+                <div class="info">
+
+                    <strong>
+
+                        Cargo
+
+                    </strong>
+
+                    <span id="cargo">
+
+                        Carregando...
+
+                    </span>
+
+                </div>
+
+                <div class="info">
+
+                    <strong>
+
+                        Matrícula
+
+                    </strong>
+
+                    <span id="matricula">
+
+                        Carregando...
+
+                    </span>
+
+                </div>
+
+                <div class="info">
+
+                    <strong>
+
+                        Validade
+
+                    </strong>
+
+                    <span id="validade">
+
+                        Carregando...
+
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- ========================= -->
+    <!-- JAVASCRIPT -->
+    <!-- ========================= -->
+
+    <script
+
+        src="/admin/js/validar/validar.js?v=2.0.0">
+
+    </script>
 
 </body>
 

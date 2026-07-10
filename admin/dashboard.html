@@ -1,309 +1,319 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 
-<head>
+    <head>
 
-    <meta charset="UTF-8">
+        <!-- ========================= -->
+        <!-- META -->
+        <!-- ========================= -->
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8">
 
-    <title>Painel Administrativo</title>
-    
-    <link rel="stylesheet" href="/admin/css/global.css">
-    <link rel="stylesheet" href="/admin/css/menu.css">
-    
-    <link rel="stylesheet"
-          href="/admin/css/dashboard.css">
+        <meta
+
+            name="viewport"
+
+            content="width=device-width, initial-scale=1.0">
+
+        <title>
+
+            Painel Administrativo
+
+        </title>
+
+        <!-- ========================= -->
+        <!-- GOOGLE FONTS -->
+        <!-- ========================= -->
+
+        <link
+
+            rel="preconnect"
+
+            href="https://fonts.googleapis.com">
+
+        <link
+
+            rel="preconnect"
+
+            href="https://fonts.gstatic.com"
+
+            crossorigin>
+
+        <link
+
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+
+            rel="stylesheet">
+
+        <!-- ========================= -->
+        <!-- FONT AWESOME -->
+        <!-- ========================= -->
+
+        <link
+
+            rel="stylesheet"
+
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+        <!-- ========================= -->
+        <!-- CSS GLOBAL -->
+        <!-- ========================= -->
+
+        <link rel="stylesheet" href="/admin/css/global/reset.css">
+
+        <link rel="stylesheet" href="/admin/css/global/variables.css">
+
+        <link rel="stylesheet" href="/admin/css/global/base.css">
+
+        <link rel="stylesheet" href="/admin/css/layout/layout.css">
+
+        <link rel="stylesheet" href="/admin/css/pages/dashboard.css?v=2.0.0">
 
 
-    <link rel="preconnect"
-          href="https://fonts.googleapis.com">
+    </head>
 
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
+    <body>
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-          rel="stylesheet">
+    <!-- ========================= -->
+    <!-- OVERLAY -->
+    <!-- ========================= -->
 
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-
-</head>
-
-<body>
     <div class="overlay"></div>
 
-<div class="dashboard">
+        <button
 
-    <!-- SIDEBAR -->
+        id="btnMenu"
 
-    <aside class="sidebar">
+        class="menu-toggle"
 
-        <div class="logo">
+        type="button"
 
-            <img src="/images/assembleia-logo.png"
-                 alt="Logo">
+        aria-label="Abrir menu"
 
-        </div>
+        aria-expanded="false">
 
-        <ul class="menu">
+        <i class="fa-solid fa-bars"></i>
 
-            <li class="active">
+    </button>
 
-                <a href="/dashboard">
+    <!-- ========================= -->
+    <!-- DASHBOARD -->
+    <!-- ========================= -->
 
-                    <i class="fa-solid fa-chart-line"></i>
+    <div class="dashboard">
 
-                    Dashboard
+        <!-- ========================= -->
+        <!-- SIDEBAR -->
+        <!-- ========================= -->
 
-                </a>
+        <aside class="sidebar">
 
-            </li>
+            <div class="logo">
 
-            <li>
+                <img
 
-                <a href="/membros">
+                    src="/images/assembleia-logo.png"
+
+                    alt="Logo da Igreja">
+
+            </div>
+
+            <nav>
+
+                <ul class="menu">
+
+                    <li class="active">
+
+                        <a href="/dashboard">
+
+                            <i class="fa-solid fa-chart-line"></i>
+
+                            Dashboard
+
+                        </a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="/membros">
+
+                            <i class="fa-solid fa-users"></i>
+
+                            Membros
+
+                        </a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="/cadastro">
+
+                            <i class="fa-solid fa-user-plus"></i>
+
+                            Cadastrar
+
+                        </a>
+
+                    </li>
+
+                    <li class="logout">
+
+                        <a href="/logout">
+
+                            <i class="fa-solid fa-right-from-bracket"></i>
+
+                            Sair
+
+                        </a>
+
+                    </li>
+
+                </ul>
+
+            </nav>
+
+        </aside>
+
+        <!-- ========================= -->
+        <!-- CONTEÚDO -->
+        <!-- ========================= -->
+
+        <main class="content">
+
+            <!-- ========================= -->
+            <!-- TOPBAR -->
+            <!-- ========================= -->
+
+            <header class="topbar">
+
+                <div>
+
+                    <h1>
+
+                        Dashboard
+
+                    </h1>
+
+                    <p>
+
+                        Bem-vindo ao painel administrativo.
+
+                    </p>
+
+                </div>
+
+  
+
+            </header>
+
+            
+            <!-- ========================= -->
+            <!-- CARDS -->
+            <!-- ========================= -->
+
+            <section class="cards">
+
+                <article class="card">
 
                     <i class="fa-solid fa-users"></i>
 
-                    Membros
+                    <h2 id="totalMembros">
 
-                </a>
+                        0
 
-            </li>
+                    </h2>
 
-            <li>
+                    <span>
 
-                <a href="/cadastro">
-
-                    <i class="fa-solid fa-user-plus"></i>
-
-                    Cadastrar
-
-                </a>
-
-            </li>
-
-        </ul>
-
-    </aside>
-
-    <!-- CONTEÚDO -->
-
-    <main class="content">
-
-        <header class="topbar">
-
-            <div>
-                <h1>Dashboard</h1>
-
-                <p>Bem-vindo ao painel administrativo.</p>
-
-            </div>
-
-            <div class="topbar-right">
-
-
-                    <button
-                        id="btnMenu"
-                        class="menu-toggle">
-
-                        <i class="fa-solid fa-bars"></i>
-
-                    </button>
-
-                    <div class="usuario">
-
-                        <img src="/images/pastor1.jpg" alt="Pastor">
-
-                        <div>
-
-                            <h4>Pastor João Silva</h4>
-
-                            <span>Administrador</span>
-
-                        </div>
-
-                    </div>
-
-            </div>
-
-        </header>
-    
-
-        <!-- CARDS -->
-
-        <section class="cards">
-
-            <div class="card">
-
-                <i class="fa-solid fa-users"></i>
-
-                <h2>125</h2>
-
-                <span>Membros</span>
-
-            </div>
-
-            <div class="card">
-
-                <i class="fa-solid fa-user-check"></i>
-
-                <h2>120</h2>
-
-                <span>Ativos</span>
-
-            </div>
-
-            <div class="card">
-
-                <i class="fa-solid fa-user-xmark"></i>
-
-                <h2>5</h2>
-
-                <span>Inativos</span>
-
-            </div>
-
-            <div class="card">
-
-                <i class="fa-solid fa-calendar-days"></i>
-
-                <h2>8</h2>
-
-                <span>Eventos</span>
-
-            </div>
-
-        </section>
-
-        <section class="scanner-area">
-
-            <a href="/scanner" class="btn-scanner">
-
-                <i class="fa-solid fa-camera"></i>
-
-                Escanear QR Code
-
-            </a>
-
-        </section>
-
-        <!-- ÚLTIMOS MEMBROS -->
-
-        <section class="ultimos">
-
-    <h2>Últimos Cadastros</h2>
-
-    <table>
-
-        <thead>
-
-            <tr>
-
-                <th>Foto</th>
-
-                <th>Nome</th>
-
-                <th>Cargo</th>
-
-                <th>Status</th>
-
-                <th>Ações</th>
-
-            </tr>
-
-        </thead>
-
-        <tbody>
-
-            <tr>
-
-                <td>
-
-                    <img src="/images/pastor1.jpg"
-                         class="foto-membro"
-                         alt="Membro">
-
-                </td>
-
-                <td>João Silva</td>
-
-                <td>Pastor</td>
-
-                <td>
-
-                    <span class="status ativo">
-
-                        Ativo
+                        Membros
 
                     </span>
 
-                </td>
+                </article>
 
-                <td>
+            </section>
 
-                    <button class="btn-table">
+            <!-- ========================= -->
+            <!-- SCANNER -->
+            <!-- ========================= -->
 
-                        Editar
+            <section class="scanner-area">
 
-                    </button>
+                <a
 
-                </td>
+                    href="/scanner"
 
-            </tr>
+                    class="btn-scanner">
 
-            <tr>
+                    <i class="fa-solid fa-camera"></i>
 
-                <td>
+                    Escanear QR Code
 
-                    <img src="/images/pastor2.jpg"
-                         class="foto-membro"
-                         alt="Membro">
+                </a>
 
-                </td>
+            </section>
 
-                <td>Maria Souza</td>
+            <!-- ========================= -->
+            <!-- ÚLTIMOS CADASTROS -->
+            <!-- ========================= -->
 
-                <td>Líder do Louvor</td>
+            <section class="ultimos">
 
-                <td>
+                <h2>
 
-                    <span class="status ativo">
+                    Últimos Cadastros
 
-                        Ativo
+                </h2>
 
-                    </span>
+                <table>
 
-                </td>
+                    <thead>
 
-                <td>
+                        <tr>
 
-                    <button class="btn-table">
+                            <th>Nome</th>
 
-                        Editar
+                            <th>Cargo</th>
 
-                    </button>
+                            <th>Ações</th>
 
-                </td>
+                        </tr>
 
-            </tr>
+                    </thead>
 
-            </tbody>
+                    <tbody id="tabelaUltimos">
 
-        </table>
+                        <!-- JavaScript -->
 
-    </section>
+                    </tbody>
 
-</main>
+                </table>
 
-</div>
+            </section>
 
-<script src="/admin/js/menu.js"></script>
-<script src="/admin/js/dashboard.js"></script>
+        </main>
+
+    </div>
+
+        <!-- ========================= -->
+    <!-- JAVASCRIPT -->
+    <!-- ========================= -->
+
+    <script
+
+        src="/admin/js/layout/menu.js?v=2.0.0">
+
+    </script>
+
+    <script
+
+        src="/admin/js/dashboard/dashboard.js?v=2.0.0">
+
+    </script>
 
 </body>
+
 
 </html>

@@ -3,140 +3,279 @@
 
 <head>
 
+    <!-- ========================= -->
+    <!-- META -->
+    <!-- ========================= -->
+
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta
 
-    <title>Membros | Painel Administrativo</title>
+        name="viewport"
 
-    <link rel="stylesheet" href="/admin/css/global.css">
-    <link rel="stylesheet" href="/admin/css/menu.css">
+        content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="/admin/css/membros.css">
+    <title>
 
-    <link rel="preconnect"
-          href="https://fonts.googleapis.com">
+        Membros | Painel Administrativo
 
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
+    </title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
-          rel="stylesheet">
+    <!-- ========================= -->
+    <!-- GOOGLE FONTS -->
+    <!-- ========================= -->
 
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link
+
+        rel="preconnect"
+
+        href="https://fonts.googleapis.com">
+
+    <link
+
+        rel="preconnect"
+
+        href="https://fonts.gstatic.com"
+
+        crossorigin>
+
+    <link
+
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+
+        rel="stylesheet">
+
+    <!-- ========================= -->
+    <!-- FONT AWESOME -->
+    <!-- ========================= -->
+
+    <link
+
+        rel="stylesheet"
+
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- ========================= -->
+    <!-- CSS GLOBAL -->
+    <!-- ========================= -->
+
+    <link rel="stylesheet" href="/admin/css/global/reset.css">
+
+    <link rel="stylesheet" href="/admin/css/global/variables.css">
+
+    <link rel="stylesheet" href="/admin/css/global/base.css">
+
+    <link rel="stylesheet" href="/admin/css/layout/layout.css">
+
+    <link rel="stylesheet" href="/admin/css/pages/membros.css?v=2.0.0">
 
 </head>
 
 <body>
+
+    <!-- ========================= -->
+    <!-- OVERLAY -->
+    <!-- ========================= -->
+
     <div class="overlay"></div>
 
-<div class="dashboard">
+        <button
 
-    <aside class="sidebar">
+            id="btnMenu"
 
-        <div class="logo">
+            class="menu-toggle"
 
-            <img src="/images/assembleia-logo.png"
-                 alt="Logo">
+            aria-label="Abrir menu">
 
-        </div>
+            <i class="fa-solid fa-bars"></i>
 
-        <ul class="menu">
+        </button>
 
-            <li>
+    <!-- ========================= -->
+    <!-- DASHBOARD -->
+    <!-- ========================= -->
 
-                <a href="/dashboard">
+    <div class="dashboard">
 
-                    <i class="fa-solid fa-chart-line"></i>
+        <!-- ========================= -->
+        <!-- SIDEBAR -->
+        <!-- ========================= -->
 
-                    Dashboard
+        <aside class="sidebar">
 
-                </a>
+            <div class="logo">
 
-            </li>
+                <img
 
-            <li class="active">
+                    src="/images/assembleia-logo.png"
 
-                <a href="/membros">
-
-                    <i class="fa-solid fa-users"></i>
-
-                    Membros
-
-                </a>
-
-            </li>
-
-            <li>
-
-                <a href="/cadastro">
-
-                    <i class="fa-solid fa-user-plus"></i>
-
-                    Cadastrar
-
-                </a>
-
-            </li>
-
-        </ul>
-
-    </aside>
-
-    <main class="content">
-
-        <header class="topbar">
-
-            <div>
-
-                <h1>Membros</h1>
-
-                <p>Gerencie todos os membros cadastrados.</p>
+                    alt="Logo da Igreja">
 
             </div>
 
-            <a href="/cadastro" class="novo-membro">
+            <nav>
 
-                <i class="fa-solid fa-plus"></i>
+                <ul class="menu">
 
-                Novo Membro
+                    <li>
 
-            </a>
+                        <a href="/dashboard">
 
-        </header>
+                            <i class="fa-solid fa-chart-line"></i>
 
-        <!-- ================= BUSCA ================= -->
+                            Dashboard
 
-<div class="pesquisa">
+                        </a>
 
-    <input
-        type="text"
-        placeholder="Pesquisar membro..."  id="pesquisa">
+                    </li>
 
-    <button>
+                    <li class="active">
 
-        <i class="fa-solid fa-magnifying-glass"></i>
+                        <a href="/membros">
 
-    </button>
+                            <i class="fa-solid fa-users"></i>
 
-</div>
+                            Membros
 
-<!-- ================= MEMBROS ================= -->
+                        </a>
 
-<section class="lista-membros" id="lista-membros">
+                    </li>
 
+                    <li>
 
-</section>
+                        <a href="/cadastro">
 
-</main>
+                            <i class="fa-solid fa-user-plus"></i>
 
-</div>
+                            Cadastrar
 
-<script src="/admin/js/menu.js"></script>
-<script src="/admin/js/membros.js"></script>
+                        </a>
+
+                    </li>
+
+                    <li class="logout">
+
+                        <a href="/logout">
+
+                            <i class="fa-solid fa-right-from-bracket"></i>
+
+                            Sair
+
+                        </a>
+
+                    </li>
+
+                </ul>
+
+            </nav>
+
+        </aside>
+
+        <!-- ========================= -->
+        <!-- CONTEÚDO -->
+        <!-- ========================= -->
+
+        <main class="content">
+
+            <!-- ========================= -->
+            <!-- TOPBAR -->
+            <!-- ========================= -->
+
+            <header class="topbar">
+
+                <div>
+
+                    <h1>
+
+                        Membros
+
+                    </h1>
+
+                    <p>
+
+                        Gerencie todos os membros cadastrados.
+
+                    </p>
+
+                </div>
+
+                <div class="topbar-actions">
+
+                    <a
+
+                        href="/cadastro"
+
+                        class="novo-membro">
+
+                        <i class="fa-solid fa-plus"></i>
+
+                        Novo Membro
+
+                    </a>
+
+  
+
+                </div>
+
+            </header>
+
+            <!-- ========================= -->
+            <!-- PESQUISA -->
+            <!-- ========================= -->
+
+            <section class="pesquisa">
+
+                <input
+
+                    type="text"
+
+                    id="pesquisa"
+
+                    placeholder="Pesquisar membro...">
+
+                <button
+
+                    type="button"
+
+                    aria-label="Pesquisar" class="btn-pesquisar">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                </button>
+
+            </section>
+
+            <!-- ========================= -->
+            <!-- LISTA DE MEMBROS -->
+            <!-- ========================= -->
+
+            <section
+
+                class="lista-membros"
+
+                id="lista-membros">
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <!-- ========================= -->
+    <!-- JAVASCRIPT -->
+    <!-- ========================= -->
+
+    <script
+
+        src="/admin/js/layout/menu.js?v=2.0.0">
+
+    </script>
+
+    <script
+
+        src="/admin/js/membros/membros.js?v=2.0.0">
+
+    </script>
 
 </body>
 

@@ -1,175 +1,624 @@
+// =====================================
+// VARIÁVEIS DE AMBIENTE
+// =====================================
+
 require("dotenv").config();
-// =========================
+
+// =====================================
 // IMPORTAÇÕES
-// =========================
+// =====================================
 
-const express = require("express");
-const path = require("path");
+const express =
+    require("express");
 
+const path =
+    require("path");
 
-const pool = require("./database/connection");
+const session =
+    require("express-session");
 
-const membroRoutes = require("./routes/membroRoutes");
+const helmet =
+    require("helmet");
 
-const errorMiddleware = require("./middlewares/errorMiddleware");
+const compression =
+    require("compression");
 
-const uploadRoutes = require("./routes/uploadRoutes");
+const pool =
+    require("./database/connection");
 
-// =========================
+const membroRoutes =
+    require("./routes/membroRoutes");
+
+const adminRoutes =
+    require("./routes/adminRoutes");
+
+const verificarAutenticacao =
+    require("./middlewares/auth");
+
+const errorMiddleware =
+    require("./middlewares/errorMiddleware");
+
+// =====================================
 // CONFIGURAÇÕES
-// =========================
+// =====================================
 
 const app = express();
 
-const PORT = process.env.PORT || 3000;
+const PORT =
+    process.env.PORT || 3000;
 
-// =========================
-// MIDDLEWARES
-// =========================
+app.disable("x-powered-by");
 
-// Permite receber JSON
+// =====================================
+// HELMET
+// =====================================
 
-app.use(express.json());
+// =====================================
+// HELMET
+// =====================================
 
-// Arquivos estáticos
+app.use(
 
-app.use(express.static(__dirname));
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
-app.use("/qrcodes", express.static(path.join(__dirname, "qrcodes")));
+    helmet({
 
-// =========================
-// ROTAS DA API
-// =========================
+        contentSecurityPolicy: {
 
-app.use("/api/membros", membroRoutes);
-app.use("/api/upload", uploadRoutes);
+            useDefaults: true,
 
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
-app.use("/qrcodes", express.static(path.join(__dirname, "qrcodes")));
+            directives: {
 
-// =========================
-// ROTAS DAS PÁGINAS
-// =========================
+                "upgrade-insecure-requests": null,
 
-// Página Inicial
+                scriptSrc: [
 
-app.get("/", (req, res) => {
+                    "'self'",
 
-    res.sendFile(path.join(__dirname, "index.html"));
+                    "https://unpkg.com",
 
-});
+                    "https://cdnjs.cloudflare.com"
 
-// Dashboard
+                ],
 
-app.get("/dashboard", (req, res) => {
+                styleSrc: [
 
-    res.sendFile(path.join(__dirname, "admin", "dashboard.html"));
+                    "'self'",
 
-});
+                    "'unsafe-inline'",
 
-// Membros
+                    "https://fonts.googleapis.com",
 
-app.get("/membros", (req, res) => {
+                    "https://cdnjs.cloudflare.com"
 
-    res.sendFile(path.join(__dirname, "admin", "membros.html"));
+                ],
 
-});
+                fontSrc: [
 
-// Cadastro
+                    "'self'",
 
-app.get("/cadastro", (req, res) => {
+                    "https://fonts.gstatic.com",
 
-    res.sendFile(path.join(__dirname, "admin", "cadastro.html"));
+                    "https://cdnjs.cloudflare.com"
 
-});
+                ],
 
-// Perfil
+                imgSrc: [
 
-app.get("/perfil", (req, res) => {
+                    "'self'",
 
-    res.sendFile(path.join(__dirname, "admin", "perfil.html"));
+                    "data:",
 
-});
+                    "blob:"
 
-// app.get("/carteirinha", (req, res) => {
+                ]
 
-//     res.sendFile(
-//         path.join(__dirname, "admin", "carteirinha.html")
-//     );
+            }
 
-// });
+        },
 
-// scanear 
+        crossOriginEmbedderPolicy: false,
 
-app.get("/scanner", (req, res) => {
-
-    res.sendFile(
-        path.join(__dirname, "admin", "scanner.html")
-    );
-
-});
-
-// Validar Credencial
-
-app.get("/validar", (req, res) => {
-    
-    res.sendFile(path.join(__dirname, "admin", "validar.html"));
-    
-});
-
-
-// =========================
-// ROTA NÃO ENCONTRADA
-// =========================
-
-app.use((req, res) => {
-
-    return res.status(404).json({
-
-        success: false,
-
-        message: "Rota não encontrada."
-
-    });
-
-});
-
-// =========================
-// INICIAR SERVIDOR
-// =========================
-
-app.listen(PORT, () => {
-
-    console.log("======================================");
-
-    console.log("🚀 Servidor iniciado com sucesso!");
-
-    console.log(`🌐 http://localhost:${PORT}`);
-
-    console.log("======================================");
-
-});
-
-// =========================
-// CONEXÃO COM O POSTGRESQL
-// =========================
-
-pool.connect()
-
-    .then(() => {
-
-        console.log("🗄️ PostgreSQL conectado com sucesso!");
+        hsts: false
 
     })
 
-    .catch((erro) => {
+);
 
-        console.error("[DATABASE]", erro);
+// =====================================
+// COMPRESSÃO
+// =====================================
 
-    });
+app.use(
 
-    // =========================
-// MIDDLEWARE DE ERROS
-// =========================
+    compression()
 
-app.use(errorMiddleware);
+);
+
+// =====================================
+// BODY PARSER
+// =====================================
+
+app.use(
+
+    express.json()
+
+);
+
+app.use(
+
+    express.urlencoded({
+
+        extended: true
+
+    })
+
+);
+
+// =====================================
+// SESSÃO
+// =====================================
+
+app.use(
+
+    session({
+
+        name: "igreja.sid",
+
+        secret:
+
+            process.env.SESSION_SECRET,
+
+        resave: false,
+
+        saveUninitialized: false,
+
+        cookie: {
+
+            httpOnly: true,
+
+            secure: false,
+
+            sameSite: "lax",
+
+            maxAge:
+
+                1000 * 60 * 60 * 2
+
+        }
+
+    })
+
+);
+
+// =====================================
+// LOG DAS REQUISIÇÕES
+// =====================================
+
+app.use(
+
+    (req, res, next) => {
+
+        console.log(
+
+            req.method,
+
+            req.url
+
+        );
+
+        next();
+
+    }
+
+);
+
+// =====================================
+// ARQUIVOS ESTÁTICOS
+// =====================================
+
+// =====================================
+// ARQUIVOS ESTÁTICOS
+// =====================================
+
+app.use(
+
+    express.static(__dirname)
+
+);
+
+app.use(
+
+    "/qrcodes",
+
+    express.static(
+
+        path.join(
+
+            __dirname,
+
+            "qrcodes"
+
+        )
+
+    )
+
+);
+
+// =====================================
+// ROTAS DA API
+// =====================================
+
+app.use(
+
+    "/api/membros",
+
+    membroRoutes
+
+);
+
+app.use(
+
+    "/api",
+
+    adminRoutes
+
+);
+
+// =====================================
+// ROTAS DAS PÁGINAS
+// =====================================
+
+// Home
+
+app.get(
+
+    "/",
+
+    (req, res) => {
+
+        res.sendFile(
+
+            path.join(
+
+                __dirname,
+
+                "index.html"
+
+            )
+
+        );
+
+    }
+
+);
+
+// Login
+
+app.get(
+
+    "/login",
+
+    (req, res) => {
+
+        res.sendFile(
+
+            path.join(
+
+                __dirname,
+
+                "admin",
+
+                "login.html"
+
+            )
+
+        );
+
+    }
+
+);
+
+// Logout
+
+app.get(
+
+    "/logout",
+
+    (req, res) => {
+
+        req.session.destroy((erro) => {
+
+            if (erro) {
+
+                return res.redirect(
+
+                    "/dashboard"
+
+                );
+
+            }
+
+            res.clearCookie(
+
+                "igreja.sid"
+
+            );
+
+            return res.redirect(
+
+                "/login"
+
+            );
+
+        });
+
+    }
+
+);
+
+// Dashboard
+
+app.get(
+
+    "/dashboard",
+
+    verificarAutenticacao,
+
+    (req, res) => {
+
+        res.sendFile(
+
+            path.join(
+
+                __dirname,
+
+                "admin",
+
+                "dashboard.html"
+
+            )
+
+        );
+
+    }
+
+);
+
+// Cadastro
+
+app.get(
+
+    "/cadastro",
+
+    verificarAutenticacao,
+
+    (req, res) => {
+
+        res.sendFile(
+
+            path.join(
+
+                __dirname,
+
+                "admin",
+
+                "cadastro.html"
+
+            )
+
+        );
+
+    }
+
+);
+
+// Membros
+
+app.get(
+
+    "/membros",
+
+    verificarAutenticacao,
+
+    (req, res) => {
+
+        res.sendFile(
+
+            path.join(
+
+                __dirname,
+
+                "admin",
+
+                "membros.html"
+
+            )
+
+        );
+
+    }
+
+);
+
+// Perfil
+
+app.get(
+
+    "/perfil",
+
+    verificarAutenticacao,
+
+    (req, res) => {
+
+        res.sendFile(
+
+            path.join(
+
+                __dirname,
+
+                "admin",
+
+                "perfil.html"
+
+            )
+
+        );
+
+    }
+
+);
+
+// Scanner
+
+app.get(
+
+    "/scanner",
+
+    verificarAutenticacao,
+
+    (req, res) => {
+
+        res.sendFile(
+
+            path.join(
+
+                __dirname,
+
+                "admin",
+
+                "scanner.html"
+
+            )
+
+        );
+
+    }
+
+);
+
+// Validação pública
+
+app.get(
+
+    "/validar",
+
+    (req, res) => {
+
+        res.sendFile(
+
+            path.join(
+
+                __dirname,
+
+                "admin",
+
+                "validar.html"
+
+            )
+
+        );
+
+    }
+
+);
+
+// =====================================
+// 404
+// =====================================
+
+// =====================================
+// 404
+// =====================================
+
+app.use(
+
+    (req, res) => {
+
+        return res.status(404).json({
+
+            success: false,
+
+            message: "Rota não encontrada."
+
+        });
+
+    }
+
+);
+
+// =====================================
+// MIDDLEWARE DE ERRO
+// =====================================
+
+app.use(
+
+    errorMiddleware
+
+);
+
+// =====================================
+// INICIAR SERVIDOR
+// =====================================
+
+async function iniciarServidor() {
+
+    try {
+
+        await pool.connect();
+
+        console.log(
+
+            "🗄️ PostgreSQL conectado com sucesso!"
+
+        );
+
+        app.listen(
+
+            PORT,
+
+            "0.0.0.0",
+
+            () => {
+
+                console.log(
+
+                    "======================================"
+
+                );
+
+                console.log(
+
+                    "🚀 Servidor iniciado com sucesso!"
+
+                );
+
+                console.log(
+
+                    `🌐 http://localhost:${PORT}`
+
+                );
+
+                console.log(
+
+                    "======================================"
+
+                );
+
+            }
+
+        );
+
+    } catch (erro) {
+
+        console.error(
+
+            "[DATABASE]",
+
+            erro
+
+        );
+
+    }
+
+}
+
+iniciarServidor();

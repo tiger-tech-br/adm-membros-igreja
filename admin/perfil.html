@@ -1,154 +1,294 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 
-<head>
+    <head>
+
+    <!-- ========================= -->
+    <!-- META -->
+    <!-- ========================= -->
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta
 
-    <title>Perfil do Membro</title>
+        name="viewport"
 
-    <link rel="stylesheet" href="/admin/css/global.css">
-    <link rel="stylesheet" href="/admin/css/menu.css">
-    <link rel="stylesheet" href="/admin/css/perfil.css">
+        content="width=device-width, initial-scale=1.0">
 
-    <link rel="preconnect"
-          href="https://fonts.googleapis.com">
+    <title>
 
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
+        Perfil do Membro
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-          rel="stylesheet">
+    </title>
 
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <!-- ========================= -->
+    <!-- GOOGLE FONTS -->
+    <!-- ========================= -->
 
-</head>
+    <link
 
-<body>
+        rel="preconnect"
+
+        href="https://fonts.googleapis.com">
+
+    <link
+
+        rel="preconnect"
+
+        href="https://fonts.gstatic.com"
+
+        crossorigin>
+
+    <link
+
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+
+        rel="stylesheet">
+
+    <!-- ========================= -->
+    <!-- FONT AWESOME -->
+    <!-- ========================= -->
+
+    <link
+
+        rel="stylesheet"
+
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- ========================= -->
+    <!-- CSS GLOBAL -->
+    <!-- ========================= -->
+
+        <link rel="stylesheet" href="/admin/css/global/reset.css">
+
+        <link rel="stylesheet" href="/admin/css/global/variables.css">
+
+        <link rel="stylesheet" href="/admin/css/global/base.css">
+
+        <link rel="stylesheet" href="/admin/css/layout/layout.css">
+
+        <link rel="stylesheet" href="/admin/css/pages/perfil.css?v=2.0.0">
+
+    </head>
+
+        <body>
+
+    <!-- ========================= -->
+    <!-- OVERLAY -->
+    <!-- ========================= -->
+
     <div class="overlay"></div>
 
-<div class="dashboard">
+    <!-- ========================= -->
+    <!-- DASHBOARD -->
+    <!-- ========================= -->
 
-    <!-- SIDEBAR -->
+    <div class="dashboard">
 
-    <aside class="sidebar">
+        <!-- ========================= -->
+        <!-- SIDEBAR -->
+        <!-- ========================= -->
 
-        <div class="logo">
+        <aside class="sidebar">
 
-            <img
-                src="/images/assembleia-logo.png"
-                alt="Logo">
+            <div class="logo">
 
-        </div>
+                <img
 
-        <ul class="menu">
+                    src="/images/assembleia-logo.png"
 
-            <li>
-
-                <a href="/dashboard">
-
-                    <i class="fa-solid fa-chart-line"></i>
-
-                    Dashboard
-
-                </a>
-
-            </li>
-
-            <li class="active">
-
-                <a href="/membros">
-
-                    <i class="fa-solid fa-users"></i>
-
-                    Membros
-
-                </a>
-
-            </li>
-
-            <li>
-
-                <a href="/cadastro">
-
-                    <i class="fa-solid fa-user-plus"></i>
-
-                    Cadastrar
-
-                </a>
-
-            </li>
-
-        </ul>
-
-    </aside>
-
-    <!-- CONTEÚDO -->
-
-    <main class="content">
-
-        <header class="topbar">
-
-            <div>
-
-                <h1>Perfil do Membro</h1>
-
-                <p>Informações completas do membro.</p>
+                    alt="Logo da Igreja">
 
             </div>
 
-            <a
-                href="/membros"
-                class="btn-voltar">
+            <nav>
 
-                <i class="fa-solid fa-arrow-left"></i>
+                <ul class="menu">
 
-                Voltar
+                    <li>
 
-            </a>
+                        <a href="/dashboard">
 
-        </header>
+                            <i class="fa-solid fa-chart-line" aria-hidden="true"></i>
 
-        <!-- PERFIL -->
+                            Dashboard
+
+                        </a>
+
+                    </li>
+
+                    <li class="active">
+
+                        <a href="/membros">
+
+                            <i class="fa-solid fa-users" aria-hidden="true"></i>
+
+                            Membros
+
+                        </a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="/cadastro">
+
+                            <i class="fa-solid fa-user-plus"></i>
+
+                            Cadastrar
+
+                        </a>
+
+                    </li>
+
+                    <li class="logout">
+
+                        <a href="/logout">
+
+                            <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>
+
+                            Sair
+
+                        </a>
+
+                    </li>
+
+                </ul>
+
+            </nav>
+
+        </aside>
+
+        <!-- ========================= -->
+        <!-- CONTEÚDO -->
+        <!-- ========================= -->
+
+        <main class="content">
+
+            <!-- ========================= -->
+            <!-- TOPBAR -->
+            <!-- ========================= -->
+
+            <header class="topbar">
+
+                <div>
+
+                    <h1>
+
+                        Perfil do Membro
+
+                    </h1>
+
+                    <p>
+
+                        Informações completas do membro.
+
+                    </p>
+
+                </div>
+
+                <div class="topbar-actions">
+
+                    <a
+
+                        href="/membros"
+
+                        class="btn-voltar">
+
+                        <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+
+                        Voltar
+
+                    </a>
+
+                    <button
+
+                        id="btnMenu"
+
+                        class="menu-toggle"
+
+                        aria-label="Abrir menu">
+
+                        <i class="fa-solid fa-bars" aria-hidden="true"></i>
+
+                    </button>
+
+                </div>
+
+            </header>
+
+            <!-- ========================= -->
+            <!-- PERFIL -->
+            <!-- ========================= -->
+
+            <section class="perfil-container">
+
+                <article class="perfil-card">
+        
 
         <section class="perfil-container">
 
             <div class="perfil-card">
 
-                <!-- FOTO -->
+                <h3 class="nome-igreja">
 
-                <img
-                    id="foto"
-                    class="perfil-foto"
-                    src="/images/user.png"
-                    alt="Foto">
+                    Assembleia de Deus
+
+                </h3>
 
                 <h2 id="nome"></h2>
 
                 <p
+
                     id="cargo"
+
                     class="perfil-cargo">
+
                 </p>
 
-                <span
-                    id="status"
-                    class="status">
-                </span>
+                <!-- ========================= -->
+                <!-- CREDENCIAL -->
+                <!-- ========================= -->
+
+                <div class="credencial">
+
+                    <div>
+
+                        <strong>
+
+                            Matrícula
+
+                        </strong>
+
+                        <span id="matricula"></span>
+
+                    </div>
+
+                    <div>
+
+                        <strong>
+
+                            Validade
+
+                        </strong>
+
+                        <span id="validade"></span>
+
+                    </div>
+
+                </div>
 
                 <hr>
 
-                <!-- DADOS -->
+                <!-- ========================= -->
+                <!-- DADOS DO MEMBRO -->
+                <!-- ========================= -->
 
                 <div class="perfil-info">
 
                     <div class="info">
 
-                        <i class="fa-solid fa-phone"></i>
+                        <i class="fa-solid fa-phone" aria-hidden="true"></i>
 
                         <span id="telefone"></span>
 
@@ -156,7 +296,7 @@
 
                     <div class="info">
 
-                        <i class="fa-solid fa-envelope"></i>
+                        <i class="fa-solid fa-envelope" aria-hidden="true"></i>
 
                         <span id="email"></span>
 
@@ -164,7 +304,7 @@
 
                     <div class="info">
 
-                        <i class="fa-solid fa-location-dot"></i>
+                        <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
 
                         <span id="endereco"></span>
 
@@ -172,7 +312,7 @@
 
                     <div class="info">
 
-                        <i class="fa-solid fa-church"></i>
+                        <i class="fa-solid fa-church" aria-hidden="true"></i>
 
                         <span id="ministerio"></span>
 
@@ -180,7 +320,7 @@
 
                     <div class="info">
 
-                        <i class="fa-solid fa-venus-mars"></i>
+                        <i class="fa-solid fa-venus-mars" aria-hidden="true"></i>
 
                         <span id="sexo"></span>
 
@@ -188,7 +328,7 @@
 
                     <div class="info">
 
-                        <i class="fa-solid fa-heart"></i>
+                        <i class="fa-solid fa-heart" aria-hidden="true"></i>
 
                         <span id="estadoCivil"></span>
 
@@ -196,7 +336,7 @@
 
                     <div class="info">
 
-                        <i class="fa-solid fa-calendar"></i>
+                        <i class="fa-solid fa-calendar" aria-hidden="true"></i>
 
                         <span id="nascimento"></span>
 
@@ -204,7 +344,7 @@
 
                     <div class="info">
 
-                        <i class="fa-solid fa-note-sticky"></i>
+                        <i class="fa-solid fa-note-sticky" aria-hidden="true"></i>
 
                         <span id="observacoes"></span>
 
@@ -214,7 +354,9 @@
 
                 <hr>
 
+                <!-- ========================= -->
                 <!-- QR CODE -->
+                <!-- ========================= -->
 
                 <div class="perfil-qrcode">
 
@@ -225,8 +367,10 @@
                     </h3>
 
                     <img
+
                         id="qrCode"
-                        alt="QR Code">
+
+                        alt="QR Code do membro">
 
                     <p>
 
@@ -236,7 +380,6 @@
 
                     <strong>
 
-                        ID:
                         <span id="idMembro"></span>
 
                     </strong>
@@ -245,16 +388,29 @@
 
                 <hr>
 
-            </div>
+            </article>
 
         </section>
 
     </main>
 
-</div>
+    </div>
 
-<script src="/admin/js/menu.js"></script>
-<script src="/admin/js/perfil.js"></script>
+    <!-- ========================= -->
+    <!-- JAVASCRIPT -->
+    <!-- ========================= -->
+
+    <script
+
+        src="/admin/js/layout/menu.js?v=2.0.0">
+
+    </script>
+
+    <script
+
+        src="/admin/js/perfil/perfil.js?v=2.0.0">
+
+    </script>
 
 </body>
 

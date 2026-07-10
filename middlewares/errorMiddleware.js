@@ -1,12 +1,38 @@
-function errorMiddleware(err, req, res, next) {
+// =====================================
+// MIDDLEWARE DE ERRO
+// =====================================
 
-    console.error("======================================");
+function errorMiddleware(
 
-    console.error("[ERROR MIDDLEWARE]");
+    erro,
 
-    console.error(err);
+    req,
 
-    console.error("======================================");
+    res,
+
+    next
+
+) {
+
+    console.error(
+
+        "======================================"
+
+    );
+
+    console.error(
+
+        "[ERROR MIDDLEWARE]"
+
+    );
+
+    console.error(erro);
+
+    console.error(
+
+        "======================================"
+
+    );
 
     return res.status(500).json({
 
@@ -17,5 +43,9 @@ function errorMiddleware(err, req, res, next) {
     });
 
 }
+
+// =====================================
+// EXPORTAÇÃO
+// =====================================
 
 module.exports = errorMiddleware;
