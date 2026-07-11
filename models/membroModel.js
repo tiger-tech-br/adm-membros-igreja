@@ -118,9 +118,6 @@ class MembroModel {
 
     }
 
-    // =====================================
-    // LISTAR
-    // =====================================
 
         // =====================================
     // LISTAR
@@ -271,9 +268,7 @@ class MembroModel {
             sexo,
             estadoCivil,
             status,
-            observacoes,
-            matricula,
-            validade
+            observacoes
 
         } = dados;
 
@@ -325,8 +320,6 @@ class MembroModel {
             status,
 
             observacoes,
-
-            matricula,
 
             id
 
