@@ -119,13 +119,13 @@ function desenharLogo(doc) {
 
         logo,
 
-        100,
+        96,
 
-        8,
+        6,
 
         {
 
-            width: 40
+            width: 50
 
         }
 
@@ -143,9 +143,9 @@ function desenharTitulo(doc) {
 
         .fillColor(dourado)
 
-        .fontSize(10)
-
         .font("Helvetica-Bold")
+
+        .fontSize(12)
 
         .text(
 
@@ -153,7 +153,7 @@ function desenharTitulo(doc) {
 
             0,
 
-            52,
+            48,
 
             {
 
@@ -179,9 +179,9 @@ function desenharDados(
 
 ) {
 
-    let y = 70;
+    let y = 74;
 
-    doc.fontSize(7);
+    doc.fontSize(7.5);
 
     if (mostrarNome) {
 
@@ -203,13 +203,13 @@ function desenharDados(
 
             membro.nome,
 
-            55,
+            60,
 
             y
 
         );
 
-        y += 12;
+        y += 14;
 
     }
 
@@ -231,13 +231,13 @@ function desenharDados(
 
         membro.cargo || "-",
 
-        55,
+        60,
 
         y
 
     );
 
-    y += 12;
+    y += 14;
 
     doc.fillColor(dourado);
 
@@ -257,13 +257,13 @@ function desenharDados(
 
         membro.matricula,
 
-        55,
+        60,
 
         y
 
     );
 
-    y += 12;
+    y += 14;
 
     doc.fillColor(dourado);
 
@@ -287,7 +287,7 @@ function desenharDados(
 
         ),
 
-        55,
+        60,
 
         y
 
@@ -315,37 +315,27 @@ function desenharQRCode(
 
     const qr = path.join(
 
-            __dirname,
+        __dirname,
 
-            "..",
+        "..",
 
-            "qrcodes",
+        "qrcodes",
 
-            `membro-${membro.id}.png`
+        `membro-${membro.id}.png`
 
-        );
+    );
 
-    if (fs.existsSync(qr)) {
+    if (!fs.existsSync(qr)) {
 
-        doc.image(
+        console.log(
 
-            qr,
+            "[QR CODE] Arquivo não encontrado:",
 
-            165,
-
-            68,
-
-            {
-
-                width: 62
-
-            }
+            qr
 
         );
 
-    } else {
-
-        console.log("[QR CODE] Arquivo não encontrado:", qr);
+        return;
 
     }
 
@@ -353,13 +343,13 @@ function desenharQRCode(
 
         qr,
 
-        165,
+        176,
 
-        68,
+        52,
 
         {
 
-            width: 62
+            width: 46
 
         }
 
@@ -393,6 +383,16 @@ function gerarCredencial(
 
     });
 
+    const nomeArquivo = membro.nome
+
+        .normalize("NFD")
+
+        .replace(/[\u0300-\u036f]/g, "")
+
+        .replace(/\s+/g, "-")
+
+        .toLowerCase();
+
     res.setHeader(
 
         "Content-Type",
@@ -405,7 +405,7 @@ function gerarCredencial(
 
         "Content-Disposition",
 
-        `inline; filename=credencial-${membro.id}.pdf`
+        `inline; filename=credencial-${nomeArquivo}.pdf`
 
     );
 
