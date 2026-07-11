@@ -34,6 +34,9 @@ const membroRoutes =
 const adminRoutes =
     require("./routes/adminRoutes");
 
+const credencialRoutes =
+    require("./routes/credencialRoutes");
+
 const verificarAutenticacao =
     require("./middlewares/auth");
 
@@ -259,6 +262,16 @@ app.use(
     "/api",
 
     adminRoutes
+
+);
+
+app.use(
+
+    "/credencial",
+
+    verificarAutenticacao,
+
+    credencialRoutes
 
 );
 
@@ -519,10 +532,6 @@ app.get(
     }
 
 );
-
-// =====================================
-// 404
-// =====================================
 
 // =====================================
 // 404

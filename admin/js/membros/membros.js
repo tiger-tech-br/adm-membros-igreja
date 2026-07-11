@@ -110,9 +110,9 @@ function criarCardMembro(membro) {
 
             </button>
 
-            <button class="btn-qr">
+            <button class="btn-credencial">
 
-                <i class="fa-solid fa-qrcode"></i>
+                <i class="fa-solid fa-id-card"></i>
 
             </button>
 
@@ -151,12 +151,12 @@ function adicionarEventosCard(card, membro) {
 
         });
 
-    card.querySelector(".btn-qr")
+        card.querySelector(".btn-credencial")
         .addEventListener("click", () => {
 
-            abrirQRCode(membro.id);
+        baixarCredencial(membro.id);
 
-        });
+    });
 
     card.querySelector(".btn-perfil")
         .addEventListener("click", () => {
@@ -256,15 +256,16 @@ function editarMembro(id) {
     abrirPagina(`/cadastro?id=${id}`);
 
 }
+
 // =========================
-// QR CODE
+// BAIXAR CREDENCIAL
 // =========================
 
-function abrirQRCode(id) {
+function baixarCredencial(id) {
 
     window.open(
 
-        `/qrcodes/membro-${id}.png`,
+        `/credencial/${id}`,
 
         "_blank"
 

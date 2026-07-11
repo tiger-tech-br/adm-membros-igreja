@@ -221,21 +221,8 @@
 
 }
 
-.btn-qrcode {
 
-    background: var(--color-success);
-
-    color: #FFF;
-
-}
-
-.btn-qrcode:hover {
-
-    background: #218838;
-
-}
-
-.btn-qr {
+.btn-credencial {
     background-color: var(--color-primary);
     color: #111;
 }
