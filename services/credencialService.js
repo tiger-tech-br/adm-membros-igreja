@@ -381,59 +381,59 @@ function gerarCredencial(
 
     });
 
-    const nomeArquivo = membro.nome
+        const nomeArquivo = (membro.nome || "membro")
 
-        .normalize("NFD")
+            .normalize("NFD")
 
-        .replace(/[\u0300-\u036f]/g, "")
+            .replace(/[\u0300-\u036f]/g, "")
 
-        .replace(/\s+/g, "-")
+            .replace(/\s+/g, "-")
 
-        .toLowerCase();
+            .toLowerCase();
 
-    res.setHeader(
+            res.setHeader(
 
-        "Content-Type",
+                "Content-Type",
 
-        "application/pdf"
+                "application/pdf"
 
-    );
+            );
 
-    res.setHeader(
+            res.setHeader(
 
-        "Content-Disposition",
+                "Content-Disposition",
 
-        `inline; filename=credencial-${nomeArquivo}.pdf`
+                `inline; filename=credencial-${nomeArquivo}.pdf`
 
-    );
+            );
 
-    doc.pipe(res);
+            doc.pipe(res);
 
-    desenharFundo(doc);
+            desenharFundo(doc);
 
-    desenharLogo(doc);
+            desenharLogo(doc);
 
-    desenharTitulo(doc);
+            desenharTitulo(doc);
 
-    desenharDados(
+            desenharDados(
 
-        doc,
+                doc,
 
-        membro
+                membro
 
-    );
+            );
 
-    desenharQRCode(
+            desenharQRCode(
 
-        doc,
+                doc,
 
-        membro
+                membro
 
-    );
+            );
 
-    doc.end();
+            doc.end();
 
-}
+        }
 
 // =====================================
 // EXPORTAÇÃO
