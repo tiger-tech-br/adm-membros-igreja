@@ -253,10 +253,6 @@ class MembroModel {
 
     }
 
-    // =====================================
-    // ATUALIZAR
-    // =====================================
-
         // =====================================
     // ATUALIZAR
     // =====================================
@@ -276,7 +272,8 @@ class MembroModel {
             estadoCivil,
             status,
             observacoes,
-            matricula
+            matricula,
+            validade
 
         } = dados;
 
