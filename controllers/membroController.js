@@ -99,6 +99,14 @@ const gerarValidade =
 
 }
 
+
+console.log({
+
+    matricula: req.body.matricula,
+
+    validade: req.body.validade
+
+});
     // =====================================
     // CRIAR
     // =====================================

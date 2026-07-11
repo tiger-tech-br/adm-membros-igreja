@@ -296,10 +296,10 @@ class MembroModel {
                 sexo = $8,
                 estado_civil = $9,
                 status = $10,
-                observacoes = $11,
-                matricula = $12
+                observacoes = $11
+                
 
-            WHERE id = $13
+            WHERE id = $12
 
             RETURNING *;
 
