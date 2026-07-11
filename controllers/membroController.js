@@ -156,18 +156,26 @@ const gerarValidade =
     } catch (erro) {
 
         console.error(
+            "======================================"
+        );
 
-            "[MEMBRO_CONTROLLER][CRIAR]",
+        console.error(
+            "[MEMBRO_CONTROLLER][CRIAR]"
+        );
 
-            erro
+        console.error(erro);
 
+        console.error(erro.stack);
+
+        console.error(
+            "======================================"
         );
 
         return res.status(500).json({
 
             success: false,
 
-            message: "Erro interno ao cadastrar o membro."
+            message: erro.message
 
         });
 
