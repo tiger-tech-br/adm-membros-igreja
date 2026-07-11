@@ -110,6 +110,8 @@ label {
     margin-bottom: var(--space-2);
 
     font-weight: var(--font-weight-medium);
+    
+    color: var(--color-white);
 
 }
 
