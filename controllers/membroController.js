@@ -39,67 +39,79 @@ const gerarValidade =
 
 }
 
-
+    // =====================================
+// GARANTIR QR CODE
+// =====================================
 
     async function garantirQRCode(membro) {
 
-    if (!membro.qr_code) {
+        if (!membro) {
 
-        const caminhoQRCode =
-            await qrCodeService.gerarQRCode(
-                membro.id
+            return null;
+
+        }
+
+        const pasta = path.join(
+
+            __dirname,
+
+            "..",
+
+            "qrcodes"
+
+        );
+
+        if (!fs.existsSync(pasta)) {
+
+            fs.mkdirSync(
+
+                pasta,
+
+                {
+
+                    recursive: true
+
+                }
+
             );
 
-        await membroModel.atualizarQRCode(
+        }
 
-            membro.id,
+        const caminhoArquivo = path.join(
 
-            caminhoQRCode
+            pasta,
+
+            `membro-${membro.id}.png`
 
         );
 
-        membro.qr_code = caminhoQRCode;
+        if (!fs.existsSync(caminhoArquivo)) {
+
+            const caminhoQRCode =
+
+                await qrCodeService.gerarQRCode(
+
+                    membro.id
+
+                );
+
+            await membroModel.atualizarQRCode(
+
+                membro.id,
+
+                caminhoQRCode
+
+            );
+
+            membro.qr_code = caminhoQRCode;
+
+        }
 
         return membro;
 
-    }
 
-    const caminhoArquivo = path.join(
-
-        __dirname,
-
-        "..",
-
-        membro.qr_code.replace(/^\//, "")
-
-    );
-
-    if (fs.existsSync(caminhoArquivo)) {
-
-        return membro;
 
     }
-
-    const caminhoQRCode =
-        await qrCodeService.gerarQRCode(
-            membro.id
-        );
-
-    await membroModel.atualizarQRCode(
-
-        membro.id,
-
-        caminhoQRCode
-
-    );
-
-    membro.qr_code = caminhoQRCode;
-
-    return membro;
-
-}
-
-
 
     // =====================================
     // CRIAR
@@ -280,49 +292,55 @@ const gerarValidade =
     // ATUALIZAR
     // =====================================
 
+  // =====================================
+// ATUALIZAR
+// =====================================
+
     async function atualizar(req, res) {
 
         try {
 
             const { id } = req.params;
 
-                const membro =
-                    await membroModel.atualizar(
+            const membro =
 
-                        id,
+                await membroModel.atualizar(
 
-                        req.body
+                    id,
 
-                    );
+                    req.body
 
-                if (!membro) {
+                );
 
-                    return res.status(404).json({
+            if (!membro) {
 
-                        success: false,
+                return res.status(404).json({
 
-                        message: "Membro não encontrado."
+                    success: false,
 
-                    });
-
-                }
-
-                const membroAtualizado =
-                    await garantirQRCode(
-
-                        membro
-
-                    );
-
-                return res.status(200).json({
-
-                    success: true,
-
-                    message: "Membro atualizado com sucesso.",
-
-                    data: membroAtualizado
+                    message: "Membro não encontrado."
 
                 });
+
+            }
+
+            const membroAtualizado =
+
+                await garantirQRCode(
+
+                    membro
+
+                );
+
+            return res.status(200).json({
+
+                success: true,
+
+                message: "Membro atualizado com sucesso.",
+
+                data: membroAtualizado
+
+            });
 
         } catch (erro) {
 
@@ -401,9 +419,6 @@ const gerarValidade =
 
     }
 
-    // =====================================
-    // VALIDAR
-    // =====================================
 
         // =====================================
     // VALIDAR CREDENCIAL
@@ -428,17 +443,23 @@ const gerarValidade =
 
                 });
 
-}
+            }
 
-        await garantirQRCode(membro);
+                const membroAtualizado =
 
-        return res.status(200).json({
+                await garantirQRCode(
 
-            success: true,
+                    membro
 
-            data: membro
+                );
 
-        });
+                return res.status(200).json({
+
+                    success: true,
+
+                    data: membroAtualizado
+
+                });
 
         } catch (erro) {
 
