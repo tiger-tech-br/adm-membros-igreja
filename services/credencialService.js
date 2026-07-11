@@ -44,10 +44,64 @@ function formatarData(data) {
 }
 
 // =====================================
-// FUNDO
+// GERAR CREDENCIAL
 // =====================================
 
-function desenharFundo(doc) {
+function gerarCredencial(
+
+    membro,
+
+    res
+
+) {
+
+    const doc = new PDFDocument({
+
+        size: [
+
+            243,
+
+            153
+
+        ],
+
+        margin: 0
+
+    });
+
+    const nomeArquivo =
+
+        (membro.nome || "membro")
+
+        .normalize("NFD")
+
+        .replace(/[\u0300-\u036f]/g, "")
+
+        .replace(/\s+/g, "-")
+
+        .toLowerCase();
+
+    res.setHeader(
+
+        "Content-Type",
+
+        "application/pdf"
+
+    );
+
+    res.setHeader(
+
+        "Content-Disposition",
+
+        `inline; filename=credencial-${nomeArquivo}.pdf`
+
+    );
+
+    doc.pipe(res);
+
+    // =====================================
+    // FUNDO
+    // =====================================
 
     doc
 
@@ -89,16 +143,9 @@ function desenharFundo(doc) {
 
         .stroke();
 
-        console.log("Fundo");
-        desenharFundo(doc);
-}
-
-
-// =====================================
-// LOGO
-// =====================================
-
-function desenharLogo(doc) {
+    // =====================================
+    // LOGO
+    // =====================================
 
     const logo = path.join(
 
@@ -112,38 +159,29 @@ function desenharLogo(doc) {
 
     );
 
-    if (!fs.existsSync(logo)) {
+    if (fs.existsSync(logo)) {
 
-        return;
+        doc.image(
+
+            logo,
+
+            96,
+
+            6,
+
+            {
+
+                width: 50
+
+            }
+
+        );
 
     }
 
-    doc.image(
-
-        logo,
-
-        96,
-
-        6,
-
-        {
-
-            width: 50
-
-        }
-
-    );
-
-    console.log("Logo");
-    desenharLogo(doc);
-
-}
-
-// =====================================
-// TÍTULO
-// =====================================
-
-function desenharTitulo(doc) {
+    // =====================================
+    // TÍTULO
+    // =====================================
 
     doc
 
@@ -171,21 +209,9 @@ function desenharTitulo(doc) {
 
         );
 
-        console.log("Título");
-        desenharTitulo(doc);
-}
-
-// =====================================
-// DADOS
-// =====================================
-
-function desenharDados(
-
-    doc,
-
-    membro
-
-) {
+    // =====================================
+    // DADOS
+    // =====================================
 
     let y = 74;
 
@@ -209,7 +235,7 @@ function desenharDados(
 
         doc.text(
 
-            membro.nome,
+            membro.nome || "-",
 
             60,
 
@@ -263,7 +289,7 @@ function desenharDados(
 
     doc.text(
 
-        membro.matricula,
+        membro.matricula || "-",
 
         60,
 
@@ -301,28 +327,9 @@ function desenharDados(
 
     );
 
-    console.log("Dados");
-    desenharDados(doc, membro);
-
-}
-
-// =====================================
-// QR CODE
-// =====================================
-
-function desenharQRCode(
-
-    doc,
-
-    membro
-
-) {
-
-    if (!membro.qr_code) {
-
-        return;
-
-    }
+    // =====================================
+    // QR CODE
+    // =====================================
 
     const qr = path.join(
 
@@ -336,131 +343,39 @@ function desenharQRCode(
 
     );
 
-        console.log("Campo qr_code:", membro.qr_code);
+    if (
 
-        console.log("Arquivo existe?", fs.existsSync(qr));
+        membro.qr_code &&
 
-        console.log("Caminho:", qr);
+        fs.existsSync(qr)
 
-        if (!fs.existsSync(qr)) {
+    ) {
 
-            return;
+        doc.image(
 
-        }
+            qr,
 
-    doc.image(
+            176,
 
-        qr,
+            75,
 
-        176,
+            {
 
-        75,
+                width: 46
 
-        {
+            }
 
-            width: 46
+        );
 
-        }
+    }
 
-    );
+    // =====================================
+    // FINALIZAR
+    // =====================================
 
-    console.log("QRCode");
-    desenharQRCode(doc, membro);
+    doc.end();
 
 }
-
-// =====================================
-// GERAR CREDENCIAL
-// =====================================
-
-function gerarCredencial(
-    
-    membro,
-
-    res
-    
-
-) {
-
-    console.log("=== GERANDO PDF ===");
-
-    console.log(membro);
-
-    console.log("Nome:", membro.nome);
-
-    console.log("QR:", membro.qr_code);
-
-
-    const doc = new PDFDocument({
-
-        size: [
-
-            243,
-
-            153
-
-        ],
-
-        margin: 0
-
-    });
-
-        const nomeArquivo = (membro.nome || "membro")
-
-            .normalize("NFD")
-
-            .replace(/[\u0300-\u036f]/g, "")
-
-            .replace(/\s+/g, "-")
-
-            .toLowerCase();
-
-            res.setHeader(
-
-                "Content-Type",
-
-                "application/pdf"
-
-            );
-
-            res.setHeader(
-
-                "Content-Disposition",
-
-                `inline; filename=credencial-${nomeArquivo}.pdf`
-
-            );
-
-            doc.pipe(res);
-
-            desenharFundo(doc);
-
-            desenharLogo(doc);
-
-            desenharTitulo(doc);
-
-            desenharDados(
-
-                doc,
-
-                membro
-
-            );
-
-            desenharQRCode(
-
-                doc,
-
-                membro
-
-            );
-
-            console.log("Fim");
-            doc.end();
-
-        }
-
-    
 
 // =====================================
 // EXPORTAÇÃO
