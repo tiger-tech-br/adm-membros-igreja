@@ -325,19 +325,17 @@ function desenharQRCode(
 
     );
 
-    if (!fs.existsSync(qr)) {
+        console.log("Campo qr_code:", membro.qr_code);
 
-        console.log(
+        console.log("Arquivo existe?", fs.existsSync(qr));
 
-            "[QR CODE] Arquivo não encontrado:",
+        console.log("Caminho:", qr);
 
-            qr
+        if (!fs.existsSync(qr)) {
 
-        );
+            return;
 
-        return;
-
-    }
+        }
 
     doc.image(
 
