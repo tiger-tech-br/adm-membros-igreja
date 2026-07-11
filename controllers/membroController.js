@@ -286,36 +286,43 @@ const gerarValidade =
 
             const { id } = req.params;
 
-            const membro =
-                await membroModel.atualizar(
+                const membro =
+                    await membroModel.atualizar(
 
-                    id,
+                        id,
 
-                    req.body
+                        req.body
 
-                );
+                    );
 
-            if (!membro) {
+                if (!membro) {
 
-                return res.status(404).json({
+                    return res.status(404).json({
 
-                    success: false,
+                        success: false,
 
-                    message: "Membro não encontrado."
+                        message: "Membro não encontrado."
+
+                    });
+
+                }
+
+                const membroAtualizado =
+                    await garantirQRCode(
+
+                        membro
+
+                    );
+
+                return res.status(200).json({
+
+                    success: true,
+
+                    message: "Membro atualizado com sucesso.",
+
+                    data: membroAtualizado
 
                 });
-
-            }
-
-            return res.status(200).json({
-
-                success: true,
-
-                message: "Membro atualizado com sucesso.",
-
-                data: membro
-
-            });
 
         } catch (erro) {
 
