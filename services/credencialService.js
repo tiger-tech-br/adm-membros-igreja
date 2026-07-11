@@ -345,7 +345,7 @@ function desenharQRCode(
 
         176,
 
-        52,
+        58,
 
         {
 
