@@ -5,6 +5,9 @@
 const PDFDocument =
     require("pdfkit");
 
+const QRCode =
+    require("qrcode");
+
 const fs =
     require("fs");
 
@@ -15,16 +18,16 @@ const path =
 // CONFIGURAÇÃO
 // =====================================
 
-// const mostrarNome =
+const mostrarNome =
 
-//     process.env
-//         .MOSTRAR_NOME_CREDENCIAL === "false";
+    process.env
+        .MOSTRAR_NOME_CREDENCIAL === "true";
 
-// const dourado = "#D4AF37";
+const dourado = "#D4AF37";
 
-// const preto = "#111111";
+const preto = "#111111";
 
-// const branco = "#FFFFFF";
+const branco = "#FFFFFF";
 
 // =====================================
 // FORMATAR DATA
@@ -44,10 +47,68 @@ function formatarData(data) {
 }
 
 // =====================================
+// DESENHAR QR CODE
+// =====================================
+
+async function desenharQRCode(
+
+    doc,
+
+    membro
+
+) {
+
+    const url =
+
+        `${process.env.APP_URL}/validar?id=${membro.id}`;
+
+    const buffer =
+
+        await QRCode.toBuffer(
+
+            url,
+
+            {
+
+                width: 500,
+
+                margin: 2,
+
+                color: {
+
+                    dark: "#000000",
+
+                    light: "#FFFFFF"
+
+                }
+
+            }
+
+        );
+
+    doc.image(
+
+        buffer,
+
+        176,
+
+        75,
+
+        {
+
+            width: 46
+
+        }
+
+    );
+
+}
+
+// =====================================
 // GERAR CREDENCIAL
 // =====================================
 
-function gerarCredencial(
+async function gerarCredencial(
 
     membro,
 
@@ -73,13 +134,13 @@ function gerarCredencial(
 
         (membro.nome || "membro")
 
-        .normalize("NFD")
+            .normalize("NFD")
 
-        .replace(/[\u0300-\u036f]/g, "")
+            .replace(/[\u0300-\u036f]/g, "")
 
-        .replace(/\s+/g, "-")
+            .replace(/\s+/g, "-")
 
-        .toLowerCase();
+            .toLowerCase();
 
     res.setHeader(
 
@@ -159,7 +220,11 @@ function gerarCredencial(
 
     );
 
-    if (fs.existsSync(logo)) {
+    if (
+
+        fs.existsSync(logo)
+
+    ) {
 
         doc.image(
 
@@ -209,7 +274,7 @@ function gerarCredencial(
 
         );
 
-    // =====================================
+            // =====================================
     // DADOS
     // =====================================
 
@@ -331,67 +396,71 @@ function gerarCredencial(
     // QR CODE
     // =====================================
 
-    const qr = path.join(
+    await desenharQRCode(
 
-        __dirname,
+        doc,
 
-        "..",
-
-        "qrcodes",
-
-        `membro-${membro.id}.png`
+        membro
 
     );
 
-    // =====================================
-// QR CODE
-// =====================================
-
-if (membro.qr_code) {
-
-    const qr = path.join(
-
-        __dirname,
-
-        "..",
-
-        membro.qr_code.replace(/^\//, "")
-
-    );
-
-        if (fs.existsSync(qr)) {
-
-            doc.image(
-
-                qr,
-
-                176,
-
-                75,
-
-                {
-
-                    width: 46
-
-                }
-
-            );
-
-        } else {
-
-            console.log("QR Code não encontrado:");
-
-            console.log(qr);
-
-        }
-
-    }
-
-    // =====================================
-    // FINALIZAR
+        // =====================================
+    // FINALIZAR PDF
     // =====================================
 
     doc.end();
+
+}
+
+
+async function gerar(req, res) {
+
+    try {
+
+        const { id } = req.params;
+
+        const membro =
+            await membroModel.buscarPorId(id);
+
+        if (!membro) {
+
+            return res.status(404).json({
+
+                success: false,
+
+                message: "Membro não encontrado."
+
+            });
+
+        }
+
+        await credencialService.gerarCredencial(
+
+            membro,
+
+            res
+
+        );
+
+    } catch (erro) {
+
+        console.error(
+
+            "[CREDENCIAL_CONTROLLER]",
+
+            erro
+
+        );
+
+        return res.status(500).json({
+
+            success: false,
+
+            message: "Erro ao gerar a credencial."
+
+        });
+
+    }
 
 }
 
