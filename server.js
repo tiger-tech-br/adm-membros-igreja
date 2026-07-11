@@ -11,6 +11,8 @@ require("dotenv").config();
 const express =
     require("express");
 
+app.set("trust proxy", 1);
+
 const path =
     require("path");
 
