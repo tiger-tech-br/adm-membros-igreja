@@ -115,6 +115,8 @@
 #btnCancelar {
 
     width: 100%;
+    background-color: var(--color-primary);
+    color: var(--color-text);
 
 }
 
