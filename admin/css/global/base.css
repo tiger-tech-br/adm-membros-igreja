@@ -166,6 +166,7 @@ button:active {
 th {
 
     text-align: left;
+    color: var(--color-text);
 
 }
 
@@ -176,9 +177,6 @@ th {
 
 }
 
-th {
-    color: var(--color-text);
-}
 
 td {
     color: var(--color-white);

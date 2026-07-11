@@ -162,6 +162,14 @@
 
 }
 
+.ultimos table td {
+    color: var(--color-white);
+}
+
+.btn-table {
+    color: var(--color-text);
+}
+
 
 /* ===================================== */
 /* RESPONSIVIDADE */
