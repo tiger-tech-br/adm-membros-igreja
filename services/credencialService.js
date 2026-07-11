@@ -15,16 +15,16 @@ const path =
 // CONFIGURAÇÃO
 // =====================================
 
-const mostrarNome =
+// const mostrarNome =
 
-    process.env
-        .MOSTRAR_NOME_CREDENCIAL === "false";
+//     process.env
+//         .MOSTRAR_NOME_CREDENCIAL === "false";
 
-const dourado = "#D4AF37";
+// const dourado = "#D4AF37";
 
-const preto = "#111111";
+// const preto = "#111111";
 
-const branco = "#FFFFFF";
+// const branco = "#FFFFFF";
 
 // =====================================
 // FORMATAR DATA
@@ -343,29 +343,47 @@ function gerarCredencial(
 
     );
 
-    if (
+    // =====================================
+// QR CODE
+// =====================================
 
-        membro.qr_code &&
+if (membro.qr_code) {
 
-        fs.existsSync(qr)
+    const qr = path.join(
 
-    ) {
+        __dirname,
 
-        doc.image(
+        "..",
 
-            qr,
+        membro.qr_code.replace(/^\//, "")
 
-            176,
+    );
 
-            75,
+        if (fs.existsSync(qr)) {
 
-            {
+            doc.image(
 
-                width: 46
+                qr,
 
-            }
+                176,
 
-        );
+                75,
+
+                {
+
+                    width: 46
+
+                }
+
+            );
+
+        } else {
+
+            console.log("QR Code não encontrado:");
+
+            console.log(qr);
+
+        }
 
     }
 
