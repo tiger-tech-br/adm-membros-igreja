@@ -16,7 +16,7 @@ body {
 
     font-weight: var(--font-weight-regular);
 
-    color: var(--color-white);
+    color: var(--color-text);
 
     background-color: var(--color-background);
 
@@ -67,7 +67,7 @@ h3 {
 
 p {
 
-    color: var(--color-text-light);
+    color: var(--color-white);
 
     margin-bottom: var(--space-4);
 
