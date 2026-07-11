@@ -152,6 +152,8 @@
 
     word-break: break-word;
 
+    color: var(--color-white);
+
 }
 
 /* ===================================== */
@@ -200,13 +202,53 @@
 
 .btn-voltar {
 
-    min-width: 150px;
+    display: inline-flex;
 
-    background-color: var(--color-primary);
+    align-items: center;
+
+    gap: .6rem;
+
+    padding: .8rem 1.5rem;
+
+    background: var(--color-primary);
+
+    color: #111;
+
+    border: none;
 
     border-radius: var(--radius-md);
 
-    color: var(--color-text);
+    font-weight: var(--font-weight-semibold);
+
+    text-decoration: none;
+
+    transition: var(--transition-fast);
+
+    box-shadow: var(--shadow-sm);
+
+}
+
+.btn-voltar:hover {
+
+    background: var(--color-primary-dark);
+
+    color: var(--color-white);
+
+    transform: translateY(-2px);
+
+    box-shadow: var(--shadow-md);
+
+}
+
+.btn-voltar i {
+
+    transition: transform .2s ease;
+
+}
+
+.btn-voltar:hover i {
+
+    transform: translateX(-4px);
 
 }
 
