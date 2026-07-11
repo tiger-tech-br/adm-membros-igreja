@@ -71,8 +71,6 @@ app.use(
 
             directives: {
 
-                "upgrade-insecure-requests": null,
-
                 scriptSrc: [
 
                     "'self'",
@@ -121,7 +119,7 @@ app.use(
 
         crossOriginEmbedderPolicy: false,
 
-        hsts: false
+        hsts: true
 
     })
 

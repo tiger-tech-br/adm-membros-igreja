@@ -1,27 +1,32 @@
 // =====================================
-// IMPORTAÇÕES
+// VARIÁVEIS DE AMBIENTE
 // =====================================
 
 require("dotenv").config();
+
+// =====================================
+// IMPORTAÇÕES
+// =====================================
 
 const bcrypt =
     require("bcrypt");
 
 const pool =
-    require("./database/connection");
+    require("./connection");
 
 // =====================================
 // DADOS DO ADMINISTRADOR
 // =====================================
 
-const nome =
-    "Administrador";
+const administrador = {
 
-const email =
-    "admin@igreja.com";
+    nome: "Administrador",
 
-const senha =
-    "Admin123";
+    email: "admin@igreja.com",
+
+    senha: "Admin123"
+
+};
 
 // =====================================
 // CRIAR ADMINISTRADOR
@@ -31,10 +36,42 @@ async function criarAdministrador() {
 
     try {
 
-        const senhaCriptografada =
+        const existe = await pool.query(
+
+            `
+
+            SELECT id
+
+            FROM administradores
+
+            WHERE email = $1;
+
+            `,
+
+            [
+
+                administrador.email
+
+            ]
+
+        );
+
+        if (existe.rows.length > 0) {
+
+            console.log(
+
+                "⚠️ Administrador já existe."
+
+            );
+
+            return;
+
+        }
+
+        const senhaHash =
             await bcrypt.hash(
 
-                senha,
+                administrador.senha,
 
                 10
 
@@ -62,17 +99,17 @@ async function criarAdministrador() {
 
                 $3
 
-            )
+            );
 
             `,
 
             [
 
-                nome,
+                administrador.nome,
 
-                email,
+                administrador.email,
 
-                senhaCriptografada
+                senhaHash
 
             ]
 
@@ -92,13 +129,13 @@ async function criarAdministrador() {
 
         console.log(
 
-            `📧 E-mail: ${email}`
+            `📧 E-mail: ${administrador.email}`
 
         );
 
         console.log(
 
-            `🔑 Senha: ${senha}`
+            `🔑 Senha: ${administrador.senha}`
 
         );
 
@@ -112,7 +149,7 @@ async function criarAdministrador() {
 
         console.error(
 
-            "[CRIAR_ADMIN]",
+            "[SEED]",
 
             erro
 
