@@ -14,45 +14,111 @@ const QRCode =
 const path =
     require("path");
 
+const fs =
+    require("fs");
+
+// =====================================
+// CAMINHO DA PASTA
+// =====================================
+
+const pastaQRCode = path.join(
+
+    __dirname,
+
+    "..",
+
+    "qrcodes"
+
+);
+
+// =====================================
+// GARANTIR PASTA
+// =====================================
+
+function garantirPasta() {
+
+    if (!fs.existsSync(pastaQRCode)) {
+
+        fs.mkdirSync(
+
+            pastaQRCode,
+
+            {
+
+                recursive: true
+
+            }
+
+        );
+
+    }
+
+}
+
 // =====================================
 // GERAR QR CODE
 // =====================================
 
 async function gerarQRCode(id) {
 
-    const pasta = path.join(
+    try {
 
-        __dirname,
+        garantirPasta();
 
-        "..",
+        const nomeArquivo =
+            `membro-${id}.png`;
 
-        "qrcodes"
+        const caminhoCompleto =
+            path.join(
 
-    );
+                pastaQRCode,
 
-    const nomeArquivo =
-        `membro-${id}.png`;
+                nomeArquivo
 
-    const caminhoCompleto = path.join(
+            );
 
-        pasta,
+        const conteudo =
+            `${process.env.APP_URL}/validar?id=${id}`;
 
-        nomeArquivo
+        await QRCode.toFile(
 
-    );
+            caminhoCompleto,
 
-    const conteudo =
-        `${process.env.APP_URL}/validar?id=${id}`;
+            conteudo,
 
-    await QRCode.toFile(
+            {
 
-        caminhoCompleto,
+                width: 500,
 
-        conteudo
+                margin: 2,
 
-    );
+                color: {
 
-    return `/qrcodes/${nomeArquivo}`;
+                    dark: "#000000",
+
+                    light: "#FFFFFF"
+
+                }
+
+            }
+
+        );
+
+        return `/qrcodes/${nomeArquivo}`;
+
+    } catch (erro) {
+
+        console.error(
+
+            "[QRCODE_SERVICE]",
+
+            erro
+
+        );
+
+        throw erro;
+
+    }
 
 }
 

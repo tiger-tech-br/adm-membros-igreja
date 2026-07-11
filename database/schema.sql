@@ -1,16 +1,24 @@
+-- =====================================
+-- TABELA DE ADMINISTRADORES
+-- =====================================
+
 CREATE TABLE administradores (
 
     id SERIAL PRIMARY KEY,
 
     nome VARCHAR(100) NOT NULL,
 
-    email VARCHAR(150) UNIQUE NOT NULL,
+    email VARCHAR(150) NOT NULL UNIQUE,
 
     senha VARCHAR(255) NOT NULL,
 
     criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 
 );
+
+-- =====================================
+-- TABELA DE MEMBROS
+-- =====================================
 
 CREATE TABLE membros (
 
@@ -34,13 +42,13 @@ CREATE TABLE membros (
 
     estado_civil VARCHAR(30),
 
-    status VARCHAR(20) DEFAULT 'Ativo',
+    status VARCHAR(20) NOT NULL DEFAULT 'Ativo',
 
     observacoes TEXT,
 
-    matricula VARCHAR(30) UNIQUE,
+    matricula VARCHAR(30) NOT NULL UNIQUE,
 
-    validade DATE,
+    validade DATE NOT NULL,
 
     qr_code TEXT,
 

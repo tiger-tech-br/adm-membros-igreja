@@ -153,23 +153,9 @@ const gerarValidade =
 
         });
 
-    } catch (erro) {
+        } catch (erro) {
 
-        console.error(
-            "======================================"
-        );
-
-        console.error(
-            "[MEMBRO_CONTROLLER][CRIAR]"
-        );
-
-        console.error(erro);
-
-        console.error(erro.stack);
-
-        console.error(
-            "======================================"
-        );
+        console.error("[MEMBRO_CONTROLLER][CRIAR]", erro);
 
         return res.status(500).json({
 
