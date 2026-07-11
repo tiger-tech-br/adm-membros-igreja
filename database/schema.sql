@@ -42,8 +42,6 @@ CREATE TABLE membros (
 
     estado_civil VARCHAR(30),
 
-    status VARCHAR(20) NOT NULL DEFAULT 'Ativo',
-
     observacoes TEXT,
 
     matricula VARCHAR(30) NOT NULL UNIQUE,

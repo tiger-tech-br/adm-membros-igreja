@@ -28,7 +28,6 @@ class MembroModel {
             ministerio,
             sexo,
             estadoCivil,
-            status,
             observacoes,
             matricula,
             validade
@@ -48,7 +47,6 @@ class MembroModel {
                 ministerio,
                 sexo,
                 estado_civil,
-                status,
                 observacoes,
                 matricula,
                 validade
@@ -57,7 +55,7 @@ class MembroModel {
 
             VALUES (
 
-                $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13
+                $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12
 
             )
 
@@ -84,8 +82,6 @@ class MembroModel {
             sexo,
 
             estadoCivil,
-
-            status,
 
             observacoes,
 
@@ -267,7 +263,6 @@ class MembroModel {
             ministerio,
             sexo,
             estadoCivil,
-            status,
             observacoes
 
         } = dados;
@@ -287,11 +282,10 @@ class MembroModel {
                 ministerio = $7,
                 sexo = $8,
                 estado_civil = $9,
-                status = $10,
-                observacoes = $11
+                observacoes = $10
                 
 
-            WHERE id = $12
+            WHERE id = $11
 
             RETURNING *;
 
@@ -316,8 +310,6 @@ class MembroModel {
             sexo,
 
             estadoCivil,
-
-            status,
 
             observacoes,
 
