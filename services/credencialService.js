@@ -103,8 +103,6 @@ function desenharLogo(doc) {
 
         "..",
 
-        "public",
-
         "images",
 
         "assembleia-logo.png"
@@ -317,23 +315,37 @@ function desenharQRCode(
 
     const qr = path.join(
 
-        __dirname,
+            __dirname,
 
-        "..",
+            "..",
 
-        membro.qr_code.replace(
+            "qrcodes",
 
-            /^\//,
+            `membro-${membro.id}.png`
 
-            ""
+        );
 
-        )
+    if (fs.existsSync(qr)) {
 
-    );
+        doc.image(
 
-    if (!fs.existsSync(qr)) {
+            qr,
 
-        return;
+            165,
+
+            68,
+
+            {
+
+                width: 62
+
+            }
+
+        );
+
+    } else {
+
+        console.log("[QR CODE] Arquivo não encontrado:", qr);
 
     }
 
