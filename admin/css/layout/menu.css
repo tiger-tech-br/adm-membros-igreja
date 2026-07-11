@@ -61,6 +61,10 @@
 
     box-shadow: var(--shadow-md);
 
+    background: var(--color-primary);
+
+    color: var(--color-text);
+
 }
 
 .menu-toggle:hover {
@@ -72,6 +76,7 @@
 .menu-toggle i {
 
     font-size: 1.2rem;
+    color: var(--color-text);
 
 }
 
@@ -93,8 +98,6 @@ body.menu-aberto {
 
 }
 
-/* ===================================== */
-/* RESPONSIVIDADE */
 
 /* ===================================== */
 /* RESPONSIVIDADE */
