@@ -89,7 +89,10 @@ function desenharFundo(doc) {
 
         .stroke();
 
+        console.log("Fundo");
+        desenharFundo(doc);
 }
+
 
 // =====================================
 // LOGO
@@ -131,6 +134,9 @@ function desenharLogo(doc) {
 
     );
 
+    console.log("Logo");
+    desenharLogo(doc);
+
 }
 
 // =====================================
@@ -165,6 +171,8 @@ function desenharTitulo(doc) {
 
         );
 
+        console.log("Título");
+        desenharTitulo(doc);
 }
 
 // =====================================
@@ -293,6 +301,9 @@ function desenharDados(
 
     );
 
+    console.log("Dados");
+    desenharDados(doc, membro);
+
 }
 
 // =====================================
@@ -353,6 +364,9 @@ function desenharQRCode(
 
     );
 
+    console.log("QRCode");
+    desenharQRCode(doc, membro);
+
 }
 
 // =====================================
@@ -360,12 +374,22 @@ function desenharQRCode(
 // =====================================
 
 function gerarCredencial(
-
+    
     membro,
 
     res
+    
 
 ) {
+
+    console.log("=== GERANDO PDF ===");
+
+    console.log(membro);
+
+    console.log("Nome:", membro.nome);
+
+    console.log("QR:", membro.qr_code);
+
 
     const doc = new PDFDocument({
 
@@ -431,9 +455,12 @@ function gerarCredencial(
 
             );
 
+            console.log("Fim");
             doc.end();
 
         }
+
+    
 
 // =====================================
 // EXPORTAÇÃO
