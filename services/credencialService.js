@@ -21,7 +21,7 @@ const path =
 const mostrarNome =
 
     process.env
-        .MOSTRAR_NOME_CREDENCIAL === "false";
+        .MOSTRAR_NOME_CREDENCIAL === "true";
 
 const dourado = "#D4AF37";
 

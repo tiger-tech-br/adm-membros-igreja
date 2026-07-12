@@ -2,6 +2,9 @@
 // ELEMENTOS
 // =====================================
 
+const campoNome = 
+    document.getElementById("nome");
+
 const campoCargo =
     document.getElementById("cargo");
 
@@ -43,6 +46,9 @@ function formatarData(data) {
 // =====================================
 
 function renderizarMembro(membro) {
+
+    campoNome.textContent = 
+        membro.nome || "Não informado";
 
     campoCargo.textContent =
         membro.cargo || "Não informado";
