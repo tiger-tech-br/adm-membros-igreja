@@ -461,26 +461,19 @@ function formatarData(data) {
 
     }
 
-    const dataFormatada = new Date(data);
+    const [
 
-    const dia = String(
+        ano,
 
-        dataFormatada.getDate()
+        mes,
 
-    ).padStart(2, "0");
+        dia
 
-    const mes = String(
-
-        dataFormatada.getMonth() + 1
-
-    ).padStart(2, "0");
-
-    const ano = dataFormatada.getFullYear();
+    ] = data.substring(0, 10).split("-");
 
     return `${dia}/${mes}/${ano}`;
 
 }
-
 // =====================================
 // PREENCHER FORMULÁRIO
 // =====================================
