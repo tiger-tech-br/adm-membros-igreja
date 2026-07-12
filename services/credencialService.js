@@ -18,16 +18,16 @@ const path =
 // CONFIGURAÇÃO
 // =====================================
 
-// const mostrarNome =
+const mostrarNome =
 
-//     process.env
-//         .MOSTRAR_NOME_CREDENCIAL === "true";
+    process.env
+        .MOSTRAR_NOME_CREDENCIAL === "true";
 
-// const dourado = "#D4AF37";
+const dourado = "#D4AF37";
 
-// const preto = "#111111";
+const preto = "#111111";
 
-// const branco = "#FFFFFF";
+const branco = "#FFFFFF";
 
 // =====================================
 // FORMATAR DATA
