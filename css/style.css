@@ -129,9 +129,6 @@ textarea {
 }
 
 
-h1 {
-    font-size: 3rem;
-}
 /* ===================================== */
 /* SEÇÕES */
 /* ===================================== */
@@ -629,7 +626,7 @@ header.header-scroll {
 
     position: relative;
 
-    min-height: 100vh;
+    min-height:92vh;
 
     display: flex;
 
@@ -703,11 +700,11 @@ header.header-scroll {
 
 .hero-content h1 {
 
-    font-size: clamp(2.8rem, 6vw, 4.8rem);
+    font-size: clamp(2.8rem, 5vw, 4.3rem);
 
-    line-height: 1.2;
+    line-height: 1.1;
 
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 
 }
 
@@ -717,13 +714,11 @@ header.header-scroll {
 
 .hero-content p {
 
-    max-width: 650px;
+    font-size: 1.05rem;
 
-    color: var(--text-light);
+    margin-bottom: 1.6rem;
 
-    font-size: 1.1rem;
-
-    margin-bottom: 2rem;
+    line-height: 1.7;
 
 }
 
@@ -1243,17 +1238,24 @@ header.header-scroll {
 
 }
 
-/* ===================================== */
-/* GRID */
-/* ===================================== */
 
-.cards {
+.ministerios-grid {
 
     display: grid;
 
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(
 
-    gap: 2rem;
+        auto-fit,
+
+        minmax(320px, 1fr)
+
+    );
+
+    column-gap: 2.5rem;
+
+    row-gap: 2.8rem;
+
+    margin-top: 4rem;
 
 }
 
@@ -1263,19 +1265,13 @@ header.header-scroll {
 
 .card {
 
-    background: var(--surface);
+    background: var(--cor-card);
 
-    border: 1px solid var(--border);
+    border-radius: 18px;
 
-    border-radius: var(--radius);
+    padding: 2.8rem;
 
-    padding: 2rem;
-
-    text-align: center;
-
-    transition: var(--transition);
-
-    box-shadow: var(--shadow);
+    transition: .3s;
 
 }
 
@@ -1293,7 +1289,7 @@ header.header-scroll {
 
 .card i {
 
-    font-size: 3rem;
+    font-size: 3.3rem;
 
     color: var(--primary);
 
@@ -1307,9 +1303,9 @@ header.header-scroll {
 
 .card h3 {
 
-    font-size: 1.4rem;
+    font-size: 1.7rem;
 
-    color: var(--text);
+    font-weight: 700;
 
     margin-bottom: 1rem;
 
@@ -1557,10 +1553,6 @@ header.header-scroll {
 
 .data {
 
-    min-width: 110px;
-
-    height: 110px;
-
     display: flex;
 
     flex-direction: column;
@@ -1577,21 +1569,23 @@ header.header-scroll {
 
 }
 
-.data h3 {
+.data h3{
 
-    font-size: 2rem;
+    font-size:2.8rem;
 
-    line-height: 1;
+    margin:0;
+
+    line-height:1;
 
 }
 
-.data span {
+.data span{
 
-    margin-top: .4rem;
+    font-size:1.1rem;
 
-    font-weight: 700;
+    font-weight:700;
 
-    letter-spacing: 2px;
+    letter-spacing:3px;
 
 }
 
@@ -1609,7 +1603,7 @@ header.header-scroll {
 
     margin-bottom: 1rem;
 
-    font-size: 1.5rem;
+    font-size:1.8rem;
 
     color: var(--text);
 
@@ -1619,11 +1613,14 @@ header.header-scroll {
 
     margin-bottom: 1.5rem;
 
+    font-size:1.05rem;
+
     color: var(--text-light);
 
-    line-height: 1.8;
+    line-height: 2;
 
 }
+
 
 /* ===================================== */
 /* BOTÃO */
