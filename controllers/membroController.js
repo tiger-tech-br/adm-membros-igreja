@@ -563,6 +563,75 @@ const gerarValidade =
 
 
 
+    // =====================================
+// BAIXAR QR CODE
+// =====================================
+
+async function baixarQRCode(req, res) {
+
+    try {
+
+        const { id } = req.params;
+
+        const membro =
+            await membroModel.buscarPorId(id);
+
+        if (!membro) {
+
+            return res.status(404).json({
+
+                success: false,
+
+                message: "Membro não encontrado."
+
+            });
+
+        }
+
+        const buffer =
+            await qrCodeService.gerarQRCodeBuffer(id);
+
+        const nomeArquivo = membro.nome
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .replace(/\s+/g, "-")
+            .toLowerCase();
+
+        res.setHeader(
+            "Content-Type",
+            "image/png"
+        );
+
+        res.setHeader(
+            "Content-Disposition",
+            `attachment; filename="qrcode-${nomeArquivo}.png"`
+        );
+
+        return res.send(buffer);
+
+    } catch (erro) {
+
+        console.error(
+
+            "[MEMBRO_CONTROLLER][BAIXAR_QRCODE]",
+
+            erro
+
+        );
+
+        return res.status(500).json({
+
+            success: false,
+
+            message: "Erro ao gerar o QR Code."
+
+        });
+
+    }
+
+}
+
+
 // =====================================
 // EXPORTAÇÃO
 // =====================================
@@ -583,6 +652,8 @@ module.exports = {
 
     ultimos,
 
-    dashboard
+    dashboard,
+
+    baixarQRCode
 
 };

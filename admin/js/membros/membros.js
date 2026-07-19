@@ -290,25 +290,16 @@ function baixarCredencial(id) {
 // BAIXAR QR CODE
 // =========================
 
+
 function baixarQRCode(membro) {
 
-    const link = document.createElement("a");
+    window.open(
 
-    const nomeArquivo = membro.nome
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .replace(/\s+/g, "-")
-        .toLowerCase();
+        `/api/membros/qrcode/${membro.id}`,
 
-    link.href = `/qrcodes/membro-${membro.id}.png`;
+        "_blank"
 
-    link.download = `qrcode-${nomeArquivo}.png`;
-
-    document.body.appendChild(link);
-
-    link.click();
-
-    document.body.removeChild(link);
+    );
 
 }
 

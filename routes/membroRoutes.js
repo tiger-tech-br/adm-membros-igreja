@@ -55,12 +55,22 @@ router.get(
     membroController.validar
 );
 
+// Baixar QR Code
+
+router.get(
+    "/qrcode/:id",
+    membroController.baixarQRCode
+);
+
 // Buscar por ID
 
 router.get(
     "/:id",
     membroController.buscarPorId
 );
+
+
+
 
 // Atualizar membro
 

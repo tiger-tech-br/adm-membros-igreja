@@ -123,11 +123,36 @@ async function gerarQRCode(id) {
 }
 
 // =====================================
+// GERAR QR CODE EM MEMÓRIA
+// =====================================
+
+async function gerarQRCodeBuffer(id) {
+
+    const conteudo =
+        `${process.env.APP_URL}/validar?id=${id}`;
+
+    return await QRCode.toBuffer(
+        conteudo,
+        {
+            type: "png",
+            width: 500,
+            margin: 2,
+            color: {
+                dark: "#000000",
+                light: "#FFFFFF"
+            }
+        }
+    );
+
+}
+
+// =====================================
 // EXPORTAÇÃO
 // =====================================
 
 module.exports = {
 
-    gerarQRCode
+    gerarQRCode,
+    gerarQRCodeBuffer
 
 };
