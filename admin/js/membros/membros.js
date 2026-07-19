@@ -110,6 +110,12 @@ function criarCardMembro(membro) {
 
             </button>
 
+            <button class="btn-qrcode">
+
+                <i class="fa-solid fa-download"></i>
+
+            </button>
+
             <button class="btn-credencial">
 
                 <i class="fa-solid fa-id-card"></i>
@@ -157,6 +163,13 @@ function adicionarEventosCard(card, membro) {
         baixarCredencial(membro.id);
 
     });
+
+        card.querySelector(".btn-qrcode")
+        .addEventListener("click", () => {
+
+            baixarQRCode(membro);
+
+        });
 
     card.querySelector(".btn-perfil")
         .addEventListener("click", () => {
@@ -270,6 +283,32 @@ function baixarCredencial(id) {
         "_blank"
 
     );
+
+}
+
+// =========================
+// BAIXAR QR CODE
+// =========================
+
+function baixarQRCode(membro) {
+
+    const link = document.createElement("a");
+
+    const nomeArquivo = membro.nome
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/\s+/g, "-")
+        .toLowerCase();
+
+    link.href = `/qrcodes/membro-${membro.id}.png`;
+
+    link.download = `qrcode-${nomeArquivo}.png`;
+
+    document.body.appendChild(link);
+
+    link.click();
+
+    document.body.removeChild(link);
 
 }
 

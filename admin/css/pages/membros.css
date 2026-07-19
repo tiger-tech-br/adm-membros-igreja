@@ -195,6 +195,20 @@
     color: #111;
 }
 
+.btn-qrcode {
+
+    background: #6f42c1;
+
+    color: #FFF;
+
+}
+
+.btn-qrcode:hover {
+
+    background: #5a32a3;
+
+}
+
 /* ===================================== */
 /* RESPONSIVIDADE */
 /* ===================================== */
